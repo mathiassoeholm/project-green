@@ -14,10 +14,10 @@ void main() {
   final initialState = AppState((b) => b
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b
-        ..emoji = "🐯"
+        ..emoji = "🐄"
       ),
       Challenge((b) => b
-        ..emoji = "🐯"
+        ..emoji = "🛫"
       ),
       Challenge((b) => b
         ..emoji = "🐯"
@@ -83,6 +83,11 @@ void main() {
     child: MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
+        primaryTextTheme: TextTheme(
+          title: TextStyle(
+            color: Colors.white
+          )
+        )
       ),
       localizationsDelegates: [
         AppLocalizations.delegate,
