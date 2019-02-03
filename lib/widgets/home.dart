@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                      padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                       child: ChallengeCard(vm.challenges[index]),
                     );
                   },
