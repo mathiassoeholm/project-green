@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:project_green/appstate/app_state.dart';
@@ -12,6 +14,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final safeAreaBottom = MediaQuery.of(context).padding.bottom;
+    final newChallengeButtonPadding = max(safeAreaBottom, 10.0);
+
     return StoreConnector<AppState, _ViewModel>(
       converter: _ViewModel.fromStore,
       builder: (BuildContext context, _ViewModel vm) {
@@ -48,13 +53,13 @@ class Home extends StatelessWidget {
                     ),
                     SliverToBoxAdapter(
                       child: Container(
-                        height: NewChallengeButton.height + 10,
+                        height: NewChallengeButton.height + newChallengeButtonPadding,
                       ),
                     )
                   ],
                 ),
                 Positioned(
-                    bottom: 10, left: 0, right: 0,
+                    bottom: newChallengeButtonPadding, left: 0, right: 0,
                     child: NewChallengeButton()
                 ),
               ],

@@ -18,6 +18,21 @@ void main() {
       Challenge((b) => b
         ..type = ChallengeType.beef,
       ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying,
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef,
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying,
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef,
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef,
+      ),
     ]).toBuilder(),
   );
 
@@ -48,7 +63,7 @@ void main() {
         const Locale('en', 'US'),
         const Locale('da', 'DK'),
       ],
-      home: CreateChallenge(),
+      home: Home(),
     ),
   ));
 }
