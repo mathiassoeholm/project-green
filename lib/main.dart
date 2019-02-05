@@ -5,6 +5,7 @@ import 'package:project_green/appstate/app_state_reducer.dart';
 import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
+import 'package:project_green/widgets/create_challenge.dart';
 import 'package:project_green/widgets/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -16,21 +17,6 @@ void main() {
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b
         ..type = ChallengeType.beef,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.flying,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.flying,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.flying,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.flying,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.flying,
       ),
     ]).toBuilder(),
   );
@@ -62,7 +48,7 @@ void main() {
         const Locale('en', 'US'),
         const Locale('da', 'DK'),
       ],
-      home: Home(),
+      home: CreateChallenge(),
     ),
   ));
 }
