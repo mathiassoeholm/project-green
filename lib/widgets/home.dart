@@ -25,11 +25,14 @@ class Home extends StatelessWidget {
                       style: Theme.of(context).primaryTextTheme.title,
                     )
                 ),
-                backgroundColor: Color(0xFF40CD8D),
+                backgroundColor: Colors.green,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: Container(
+                  background: DecoratedBox(
                     decoration: BoxDecoration(
-                      gradient: greenGradient,
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/cover_image_1.jpg'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

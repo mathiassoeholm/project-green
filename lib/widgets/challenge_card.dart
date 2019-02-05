@@ -9,66 +9,79 @@ class ChallengeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-      child: Stack(
-        children: <Widget>[
-          Container(
-            height: 110,
-            decoration: BoxDecoration(
-              boxShadow: [
-                new BoxShadow(
-                  color: Colors.black26,
-                  offset: new Offset(5.0, 10.0),
-                  blurRadius: 10.0,
-                )
-              ],
-              gradient: greenGradient,
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          new BoxShadow(
+            color: Colors.black26,
+            offset: new Offset(-3, 2),
+            blurRadius: 3,
+          )
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(0)),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              height: 110,
+              color: Colors.green[600],
             ),
-          ),
-          Positioned(
-            left: 10.0, right: 0, top: 0, bottom: 0,
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(challenge.emoji,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 50,
-                )
-              ),
-            ),
-          ),
-          Positioned(
-            left: 70, right: 0, top: 15, bottom: 0,
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text("Avoid eating beef"),
-            ),
-          ),
-          Positioned(
-            width: 130, right: -40, top: -20, bottom: -20,
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black38,
-                boxShadow: [
-                  new BoxShadow(
-                    color: Colors.black26,
-                    offset: new Offset(-3, 2),
-                    blurRadius: 3,
+            Positioned(
+              left: 7, right: 0, top: 0, bottom: 0,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(challenge.emoji,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 50,
                   )
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                child: Icon(Icons.report,
-                  size: 40,
-                  color: Colors.white,
                 ),
               ),
             ),
-          ),
-        ],
+            Positioned(
+              left: 80, right: 0, top: 15, bottom: 0,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text("Avoid eating beef",
+                  style: Theme.of(context).textTheme.title,
+                ),
+              ),
+            ),
+            Positioned(
+              left: 80, right: 0, top: 60, bottom: 0,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text("30 day streak",
+                  style: Theme.of(context).textTheme.subtitle,
+                ),
+              ),
+            ),
+            Positioned(
+              width: 130, right: -40, top: -20, bottom: -20,
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.black38,
+                  boxShadow: [
+                    new BoxShadow(
+                      color: Colors.black26,
+                      offset: new Offset(-3, 2),
+                      blurRadius: 3,
+                    )
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                  child: Icon(Icons.report,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

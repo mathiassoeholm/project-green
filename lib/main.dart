@@ -83,9 +83,12 @@ void main() {
     child: MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
-        primaryTextTheme: TextTheme(
+        textTheme: TextTheme(
           title: TextStyle(
             color: Colors.white
+          ),
+          subtitle: TextStyle(
+            color: Colors.white,
           )
         )
       ),
