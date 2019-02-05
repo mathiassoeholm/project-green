@@ -20,55 +20,16 @@ void main() {
         ..emoji = "🛫"
       ),
       Challenge((b) => b
-        ..emoji = "🐯"
+        ..emoji = "🛫"
       ),
       Challenge((b) => b
-        ..emoji = "🐯"
+        ..emoji = "🛫"
       ),
       Challenge((b) => b
-        ..emoji = "🐯"
+        ..emoji = "🛫"
       ),
       Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
+        ..emoji = "🛫"
       ),
     ]).toBuilder(),
   );
@@ -83,14 +44,8 @@ void main() {
     child: MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
-        textTheme: TextTheme(
-          title: TextStyle(
-            color: Colors.white
-          ),
-          subtitle: TextStyle(
-            color: Colors.white,
-          )
-        )
+        accentColor: Colors.white,
+        textTheme: Typography.whiteMountainView,
       ),
       localizationsDelegates: [
         AppLocalizations.delegate,

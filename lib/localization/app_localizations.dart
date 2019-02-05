@@ -16,6 +16,10 @@ class AppLocalizations {
     return _text[locale.languageCode]['title'];
   }
 
+  String get newChallengeButton {
+    return _text[locale.languageCode]['new_challenge_button'];
+  }
+
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 }
 

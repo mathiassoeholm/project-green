@@ -11,21 +11,15 @@ class ChallengeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [
-          new BoxShadow(
-            color: Colors.black26,
-            offset: new Offset(-3, 2),
-            blurRadius: 3,
-          )
-        ],
+        boxShadow: ThemeValues.boxShadow,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(0)),
+        borderRadius: BorderRadius.circular(0),
         child: Stack(
           children: <Widget>[
             Container(
               height: 110,
-              color: Colors.green[600],
+              color: ThemeValues.green,
             ),
             Positioned(
               left: 7, right: 0, top: 0, bottom: 0,
@@ -62,7 +56,7 @@ class ChallengeCard extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.black38,
+                  color: ThemeValues.greenDark,
                   boxShadow: [
                     new BoxShadow(
                       color: Colors.black26,

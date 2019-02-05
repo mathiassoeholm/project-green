@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
-const greenGradient = LinearGradient(
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
-  stops: [0.1, 0.9],
-  colors: [
-    Color(0xFF40CD8D),
-    Color(0xFF02B798),
-  ],
-);
+class ThemeValues {
+  static const boxShadow = [
+    BoxShadow(
+      color: Colors.black26,
+      offset: Offset(-3, 2),
+      blurRadius: 3,
+    )
+  ];
+
+  static const green = Color(0xFF5FAF26);
+  static const greenDark = Color(0x66000000);
+  static const greenFaded = Colors.green;
+}
+
