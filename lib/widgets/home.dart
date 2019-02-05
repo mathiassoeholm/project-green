@@ -5,6 +5,7 @@ import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/widgets/challenge_card.dart';
 import 'package:project_green/widgets/new_challenge_button.dart';
+import 'package:project_green/widgets/theme_values.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -24,10 +25,10 @@ class Home extends StatelessWidget {
                       expandedHeight: 200.0,
                       title: Center(
                           child: Text(AppLocalizations.of(context).title,
-                            style: Theme.of(context).primaryTextTheme.title,
+                            style: Theme.of(context).textTheme.headline,
                           )
                       ),
-                      backgroundColor: Colors.green,
+                      backgroundColor: ThemeValues.green,
                       flexibleSpace: FlexibleSpaceBar(
                         background: DecoratedBox(
                           decoration: BoxDecoration(

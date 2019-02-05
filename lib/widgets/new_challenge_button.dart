@@ -3,7 +3,7 @@ import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
 class NewChallengeButton extends StatelessWidget {static
-  const height = 70.0;
+  const height = 60.0;
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +13,11 @@ class NewChallengeButton extends StatelessWidget {static
         decoration: BoxDecoration(
           boxShadow: ThemeValues.boxShadow,
           borderRadius: BorderRadius.circular(height/2.0),
-          border: Border.all(
-            color: Colors.white,
-            width: 1,
-          ),
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(height/2.0),
           child: Material(
-            color: ThemeValues.greenFaded,
+            color: Colors.black,
             child: InkWell(
               onTap: () { },
               child: Row(
@@ -29,14 +25,16 @@ class NewChallengeButton extends StatelessWidget {static
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(6, 0, 2, 0),
-                    child: Icon(Icons.filter_vintage,
-                      color: Colors.white,
-                    ),
+                    padding: const EdgeInsets.fromLTRB(8, 0, 2, 0),
+                    child: Text(AppLocalizations.of(context).newChallengeButton),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(2, 0, 6, 0),
-                    child: Text(AppLocalizations.of(context).newChallengeButton),
+                      padding: const EdgeInsets.fromLTRB(2, 0, 8, 0),
+                      child: Text("💪",
+                        style: TextStyle(
+                            fontSize: 24
+                        ),
+                      )
                   ),
                 ],
               ),

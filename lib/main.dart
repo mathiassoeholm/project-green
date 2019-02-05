@@ -44,9 +44,14 @@ void main() {
     store: store,
     child: MaterialApp(
       theme: ThemeData(
+        fontFamily: 'Montserrat',
         primarySwatch: Colors.green,
         accentColor: Colors.white,
-        textTheme: Typography.whiteMountainView,
+        textTheme: Typography.whiteMountainView.merge(TextTheme(
+          headline: TextStyle(
+            fontWeight: FontWeight.w600,
+          )
+        )),
       ),
       localizationsDelegates: [
         AppLocalizations.delegate,
