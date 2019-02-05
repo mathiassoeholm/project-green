@@ -7,6 +7,8 @@ Map<String, Map<String, String>> _text = {
     'avoid_prefix': 'Avoid',
     'challenge_beef': 'beef',
     'challenge_flying': 'flying',
+    'current_streak': 'Current streak',
+    'longest_streak': 'Longest streak',
   },
   'da': {
     'title': 'App Titel',
@@ -14,5 +16,7 @@ Map<String, Map<String, String>> _text = {
     'avoid_prefix': 'Undgå',
     'challenge_beef': 'oksekød',
     'challenge_flying': 'at flyve',
+    'current_streak': 'Nuværende streak',
+    'longest_streak': 'Længste streak',
   },
 };

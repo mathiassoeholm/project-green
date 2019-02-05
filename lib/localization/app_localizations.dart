@@ -20,6 +20,14 @@ class AppLocalizations {
     return _text[locale.languageCode]['new_challenge_button'];
   }
 
+  String get currentStreak {
+    return _text[locale.languageCode]['current_streak'];
+  }
+
+  String get longestStreak {
+    return _text[locale.languageCode]['longest_streak'];
+  }
+
   String get avoidPrefix {
     return _text[locale.languageCode]['avoid_prefix'];
   }

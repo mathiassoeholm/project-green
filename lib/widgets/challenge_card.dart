@@ -20,7 +20,7 @@ class ChallengeCard extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Container(
-              height: 110,
+              height: 100,
               color: ThemeValues.green,
             ),
             Positioned(
@@ -36,22 +36,25 @@ class ChallengeCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 80, right: 0, top: 15, bottom: 0,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  AppLocalizations.of(context).avoidPrefix + " " + ChallengeMappings.name(challenge.type, context),
-                  style: Theme.of(context).textTheme.title,
-                ),
-              ),
-            ),
-            Positioned(
-              left: 80, right: 0, top: 60, bottom: 0,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text("30 day streak",
-                  style: Theme.of(context).textTheme.subtitle,
-                ),
+              left: 80, right: 0, top: 5, bottom: 5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Text(
+                      AppLocalizations.of(context).avoidPrefix + " " + ChallengeMappings.name(challenge.type, context),
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                  ),
+                  Text("${AppLocalizations.of(context).currentStreak}: 30",
+                    style: Theme.of(context).textTheme.subtitle,
+                  ),
+                  Text("${AppLocalizations.of(context).longestStreak}: 30",
+                    style: Theme.of(context).textTheme.subtitle,
+                  ),
+                ],
               ),
             ),
             Positioned(
@@ -60,13 +63,7 @@ class ChallengeCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: ThemeValues.greenDark,
-                  boxShadow: [
-                    new BoxShadow(
-                      color: Colors.black26,
-                      offset: new Offset(-3, 2),
-                      blurRadius: 3,
-                    )
-                  ],
+                  boxShadow: ThemeValues.boxShadow,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
