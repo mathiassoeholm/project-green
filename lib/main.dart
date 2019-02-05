@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/appstate/app_state_reducer.dart';
 import 'package:project_green/challenges/challenge.dart';
+import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
+import 'package:project_green/widgets/create_challenge.dart';
 import 'package:project_green/widgets/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -14,61 +16,7 @@ void main() {
   final initialState = AppState((b) => b
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b
-        ..emoji = "🐄"
-      ),
-      Challenge((b) => b
-        ..emoji = "🛫"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
-      ),
-      Challenge((b) => b
-        ..emoji = "🐯"
+        ..type = ChallengeType.beef,
       ),
     ]).toBuilder(),
   );
@@ -82,12 +30,14 @@ void main() {
     store: store,
     child: MaterialApp(
       theme: ThemeData(
+        fontFamily: 'Montserrat',
         primarySwatch: Colors.green,
-        primaryTextTheme: TextTheme(
-          title: TextStyle(
-            color: Colors.white
+        accentColor: Colors.white,
+        textTheme: Typography.whiteMountainView.merge(TextTheme(
+          headline: TextStyle(
+            fontWeight: FontWeight.w600,
           )
-        )
+        )),
       ),
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -98,7 +48,7 @@ void main() {
         const Locale('en', 'US'),
         const Locale('da', 'DK'),
       ],
-      home: Home(),
+      home: CreateChallenge(),
     ),
   ));
 }

@@ -1,0 +1,4 @@
+enum ChallengeType {
+  beef,
+  flying,
+}
