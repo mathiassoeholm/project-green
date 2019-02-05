@@ -8,14 +8,14 @@ part of 'challenge.dart';
 
 class _$Challenge extends Challenge {
   @override
-  final String emoji;
+  final ChallengeType type;
 
   factory _$Challenge([void updates(ChallengeBuilder b)]) =>
       (new ChallengeBuilder()..update(updates)).build();
 
-  _$Challenge._({this.emoji}) : super._() {
-    if (emoji == null) {
-      throw new BuiltValueNullFieldError('Challenge', 'emoji');
+  _$Challenge._({this.type}) : super._() {
+    if (type == null) {
+      throw new BuiltValueNullFieldError('Challenge', 'type');
     }
   }
 
@@ -29,17 +29,17 @@ class _$Challenge extends Challenge {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Challenge && emoji == other.emoji;
+    return other is Challenge && type == other.type;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, emoji.hashCode));
+    return $jf($jc(0, type.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Challenge')..add('emoji', emoji))
+    return (newBuiltValueToStringHelper('Challenge')..add('type', type))
         .toString();
   }
 }
@@ -47,15 +47,15 @@ class _$Challenge extends Challenge {
 class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
   _$Challenge _$v;
 
-  String _emoji;
-  String get emoji => _$this._emoji;
-  set emoji(String emoji) => _$this._emoji = emoji;
+  ChallengeType _type;
+  ChallengeType get type => _$this._type;
+  set type(ChallengeType type) => _$this._type = type;
 
   ChallengeBuilder();
 
   ChallengeBuilder get _$this {
     if (_$v != null) {
-      _emoji = _$v.emoji;
+      _type = _$v.type;
       _$v = null;
     }
     return this;
@@ -76,7 +76,7 @@ class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
 
   @override
   _$Challenge build() {
-    final _$result = _$v ?? new _$Challenge._(emoji: emoji);
+    final _$result = _$v ?? new _$Challenge._(type: type);
     replace(_$result);
     return _$result;
   }

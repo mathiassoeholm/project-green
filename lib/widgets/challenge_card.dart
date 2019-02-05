@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_green/challenges/challenge.dart';
+import 'package:project_green/challenges/challenge_mappings.dart';
+import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
 class ChallengeCard extends StatelessWidget {
@@ -25,7 +27,7 @@ class ChallengeCard extends StatelessWidget {
               left: 7, right: 0, top: 0, bottom: 0,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(challenge.emoji,
+                child: Text(ChallengeMappings.emoji(challenge.type),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 50,
@@ -37,7 +39,8 @@ class ChallengeCard extends StatelessWidget {
               left: 80, right: 0, top: 15, bottom: 0,
               child: Align(
                 alignment: Alignment.topLeft,
-                child: Text("Avoid eating beef",
+                child: Text(
+                  AppLocalizations.of(context).avoidPrefix + " " + ChallengeMappings.name(challenge.type, context),
                   style: Theme.of(context).textTheme.title,
                 ),
               ),

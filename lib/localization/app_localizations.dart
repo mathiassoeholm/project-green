@@ -20,6 +20,18 @@ class AppLocalizations {
     return _text[locale.languageCode]['new_challenge_button'];
   }
 
+  String get avoidPrefix {
+    return _text[locale.languageCode]['avoid_prefix'];
+  }
+
+  String get challengeBeef {
+    return _text[locale.languageCode]['challenge_beef'];
+  }
+
+  String get challengeFlying {
+    return _text[locale.languageCode]['challenge_flying'];
+  }
+
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 }
 

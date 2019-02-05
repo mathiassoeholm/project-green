@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/appstate/app_state_reducer.dart';
 import 'package:project_green/challenges/challenge.dart';
+import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/widgets/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,22 +15,22 @@ void main() {
   final initialState = AppState((b) => b
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b
-        ..emoji = "🐄"
+        ..type = ChallengeType.beef,
       ),
       Challenge((b) => b
-        ..emoji = "🛫"
+        ..type = ChallengeType.flying,
       ),
       Challenge((b) => b
-        ..emoji = "🛫"
+        ..type = ChallengeType.flying,
       ),
       Challenge((b) => b
-        ..emoji = "🛫"
+        ..type = ChallengeType.flying,
       ),
       Challenge((b) => b
-        ..emoji = "🛫"
+        ..type = ChallengeType.flying,
       ),
       Challenge((b) => b
-        ..emoji = "🛫"
+        ..type = ChallengeType.flying,
       ),
     ]).toBuilder(),
   );

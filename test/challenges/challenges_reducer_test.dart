@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/appstate/app_state_reducer.dart';
 import 'package:project_green/challenges/challenge.dart';
+import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/challenges/challenges_actions.dart';
 import 'package:redux/redux.dart';
 
@@ -16,7 +17,7 @@ main() {
       expect(store.state.challenges, []);
 
       final newChallenge = Challenge((b) => b
-        ..emoji = "🐄"
+        ..type = ChallengeType.beef
       );
 
       store.dispatch(AddChallengeAction(newChallenge));
