@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
-class NewChallengeButton extends StatelessWidget {static
-  const height = 60.0;
+class PrimaryActionButton extends StatelessWidget {
+  static const height = 60.0;
+
+  final String text;
+  final String emoji;
+  final VoidCallback onTap;
+
+  const PrimaryActionButton({
+    Key key,
+    @required this.text,
+    @required this.emoji,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +30,18 @@ class NewChallengeButton extends StatelessWidget {static
           child: Material(
             color: Colors.black,
             child: InkWell(
-              onTap: () { },
+              onTap: onTap,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(8, 0, 2, 0),
-                    child: Text(AppLocalizations.of(context).newChallengeButton),
+                    child: Text(text),
                   ),
                   Padding(
                       padding: const EdgeInsets.fromLTRB(2, 0, 8, 0),
-                      child: Text("💪",
+                      child: Text(emoji,
                         style: TextStyle(
                             fontSize: 24
                         ),

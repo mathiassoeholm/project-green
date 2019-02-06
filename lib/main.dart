@@ -63,7 +63,11 @@ void main() {
         const Locale('en', 'US'),
         const Locale('da', 'DK'),
       ],
-      home: CreateChallenge(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Home(),
+        '/create_challenge': (context) => CreateChallenge(),
+      },
     ),
   ));
 }

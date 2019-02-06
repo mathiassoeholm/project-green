@@ -6,7 +6,7 @@ import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/widgets/challenge_card.dart';
-import 'package:project_green/widgets/new_challenge_button.dart';
+import 'package:project_green/widgets/primary_action_button.dart';
 import 'package:project_green/widgets/theme_values.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -53,14 +53,20 @@ class Home extends StatelessWidget {
                     ),
                     SliverToBoxAdapter(
                       child: Container(
-                        height: NewChallengeButton.height + newChallengeButtonPadding,
+                        height: PrimaryActionButton.height + newChallengeButtonPadding,
                       ),
                     )
                   ],
                 ),
                 Positioned(
                     bottom: newChallengeButtonPadding, left: 0, right: 0,
-                    child: NewChallengeButton()
+                    child: PrimaryActionButton(
+                      text: AppLocalizations.of(context).newChallengeButton,
+                      emoji: "💪",
+                      onTap: () {
+                        Navigator.pushNamed(context, '/create_challenge');
+                      },
+                    )
                 ),
               ],
             ),
