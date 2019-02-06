@@ -47,6 +47,11 @@ flutter:
   assets:
     - assets/images/cover_image_1.jpg
     - assets/images/cover_image_2.jpg
+    - assets/emoji/airplane.png
+    - assets/emoji/car.png
+    - assets/emoji/cow.png
+    - assets/emoji/pig.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

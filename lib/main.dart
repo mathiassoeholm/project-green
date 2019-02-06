@@ -63,7 +63,7 @@ void main() {
         const Locale('en', 'US'),
         const Locale('da', 'DK'),
       ],
-      home: Home(),
+      home: CreateChallenge(),
     ),
   ));
 }

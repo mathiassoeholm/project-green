@@ -27,11 +27,9 @@ class ChallengeCard extends StatelessWidget {
               left: 7, right: 0, top: 0, bottom: 0,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(ChallengeMappings.emoji(challenge.type),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 50,
-                  )
+                child: Image.asset(
+                  ChallengeMappings.imagePath(challenge.type),
+                  height: 60,
                 ),
               ),
             ),
