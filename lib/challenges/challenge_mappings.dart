@@ -3,8 +3,12 @@ import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
 
 class ChallengeMappings {
-  static String imagePath(ChallengeType type) {
-    return "assets/emoji/${_imageName(type)}.png";
+  static String avatarPath(ChallengeType type) {
+    return "assets/images/challenges/${_imageName(type)}_avatar.png";
+  }
+
+  static String coverPath(ChallengeType type) {
+    return "assets/images/challenges/${_imageName(type)}_cover.png";
   }
 
   static String _imageName(ChallengeType type) {

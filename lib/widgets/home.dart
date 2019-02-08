@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
       converter: _ViewModel.fromStore,
       builder: (BuildContext context, _ViewModel vm) {
         return Material(
-          color: Colors.white,
+          color: ThemeValues.lightBackground,
           child: Stack(
               children: <Widget>[
                 CustomScrollView(

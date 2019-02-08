@@ -48,9 +48,17 @@ void main() {
         fontFamily: 'Montserrat',
         primarySwatch: Colors.green,
         accentColor: Colors.white,
-        textTheme: Typography.whiteMountainView.merge(TextTheme(
+        textTheme: Typography.blackMountainView.merge(TextTheme(
           headline: TextStyle(
             fontWeight: FontWeight.w600,
+          ),
+          title: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w500,
+          ),
+          subtitle: TextStyle(
+            fontSize: 14,
+            color: Color(0xFF8D8D8D),
           )
         )),
       ),

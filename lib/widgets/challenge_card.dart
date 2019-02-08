@@ -13,63 +13,40 @@ class ChallengeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: ThemeValues.boxShadow,
+        boxShadow: ThemeValues.cardDropShadow,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(0),
+        borderRadius: BorderRadius.circular(5.0),
         child: Stack(
           children: <Widget>[
             Container(
-              height: 100,
-              color: ThemeValues.green,
+              height: 74,
+              color: Colors.white,
             ),
             Positioned(
               left: 7, right: 0, top: 0, bottom: 0,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Image.asset(
-                  ChallengeMappings.imagePath(challenge.type),
-                  height: 60,
-                ),
+                child: CircleAvatar(
+                  radius: 32,
+                  backgroundImage: AssetImage(ChallengeMappings.avatarPath(challenge.type)),
+                )
               ),
             ),
             Positioned(
-              left: 80, right: 0, top: 5, bottom: 5,
+              left: 80, right: 0, top: 16, bottom: 16,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Text(
-                      AppLocalizations.of(context).avoidPrefix + " " + ChallengeMappings.name(challenge.type, context),
-                      style: Theme.of(context).textTheme.title,
-                    ),
+                  Text(
+                    AppLocalizations.of(context).avoidPrefix + " " + ChallengeMappings.name(challenge.type, context),
+                    style: Theme.of(context).textTheme.title,
                   ),
                   Text("${AppLocalizations.of(context).currentStreak}: 30",
                     style: Theme.of(context).textTheme.subtitle,
                   ),
-                  Text("${AppLocalizations.of(context).longestStreak}: 30",
-                    style: Theme.of(context).textTheme.subtitle,
-                  ),
                 ],
-              ),
-            ),
-            Positioned(
-              width: 130, right: -40, top: -20, bottom: -20,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: ThemeValues.greenDark,
-                  boxShadow: ThemeValues.boxShadow,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                  child: Icon(Icons.report,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                ),
               ),
             ),
           ],

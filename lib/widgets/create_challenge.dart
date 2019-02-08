@@ -92,7 +92,7 @@ class CreateChallenge extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Row(
           children: <Widget>[
-            Image.asset(ChallengeMappings.imagePath(type),
+            Image.asset(ChallengeMappings.avatarPath(type),
               height: 40,
             ),
             Padding(
