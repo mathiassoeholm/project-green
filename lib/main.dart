@@ -33,6 +33,18 @@ void main() {
       Challenge((b) => b
         ..type = ChallengeType.beef,
       ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef,
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef,
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef,
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef,
+      ),
     ]).toBuilder(),
   );
 

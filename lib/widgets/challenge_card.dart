@@ -49,6 +49,43 @@ class ChallengeCard extends StatelessWidget {
                 ],
               ),
             ),
+            Positioned(
+              left: 0, right: 7, top: 0, bottom: 0,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: ThemeValues.green,
+                    borderRadius: BorderRadius.circular(100),
+                    boxShadow: ThemeValues.buttonDropShadow,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 7.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text("SORRY",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.w800,
+                            fontSize: 15,
+                          )
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 3.0),
+                          child: Icon(Icons.public,
+                            color: Colors.white,
+                            size: 22,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
