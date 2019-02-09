@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:project_green/challenges/challenge_mappings.dart';
 import 'package:project_green/challenges/challenge_type.dart';
-import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/widgets/primary_action_button.dart';
 
 class CreateChallenge extends StatelessWidget {
@@ -40,7 +39,7 @@ class CreateChallenge extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(AppLocalizations.of(context).avoidPrefix + ": ",
+              Text("Avoid : ",
                 style: Theme.of(context).textTheme.title,
               ),
               Container(
@@ -97,7 +96,7 @@ class CreateChallenge extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
-              child: Text(ChallengeMappings.name(type, context),
+              child: Text("Cow",
                 style: Theme.of(context).textTheme.title,
               ),
             ),

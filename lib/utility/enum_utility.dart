@@ -1,0 +1,1 @@
+String enumName(enumeration) => enumeration.toString().split('.').last;

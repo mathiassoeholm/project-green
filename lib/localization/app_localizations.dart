@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:project_green/challenges/challenge_type.dart';
+import 'package:project_green/utility/enum_utility.dart';
 
 part 'app_localizations_text.dart';
 
@@ -28,10 +30,6 @@ class AppLocalizations {
     return _text[locale.languageCode]['longest_streak'];
   }
 
-  String get avoidPrefix {
-    return _text[locale.languageCode]['avoid_prefix'];
-  }
-
   String get yearSingular {
     return _text[locale.languageCode]['year_singular'];
   }
@@ -52,12 +50,17 @@ class AppLocalizations {
     return _text[locale.languageCode]['and'];
   }
 
-  String get challengeBeef {
-    return _text[locale.languageCode]['challenge_beef'];
+  // Challenges
+  String getLongChallengeName(ChallengeType challengeType) {
+    return _text[locale.languageCode]['challenge_${enumName(challengeType)}_long'];
   }
 
-  String get challengeFlying {
-    return _text[locale.languageCode]['challenge_flying'];
+  String getMediumChallengeName(ChallengeType challengeType) {
+    return _text[locale.languageCode]['challenge_${enumName(challengeType)}_medium'];
+  }
+
+  String getShortChallengeName(ChallengeType challengeType) {
+    return _text[locale.languageCode]['challenge_${enumName(challengeType)}_short'];
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();

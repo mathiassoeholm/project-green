@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
 class PrimaryActionButton extends StatelessWidget {

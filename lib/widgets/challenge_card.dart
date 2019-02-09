@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/challenges/challenge_mappings.dart';
 import 'package:project_green/localization/app_localizations.dart';
-import 'package:project_green/utility/string_utility.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
 class ChallengeCard extends StatelessWidget {
@@ -17,12 +16,14 @@ class ChallengeCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final screenWidth = MediaQuery.of(context).size.width;
-    final avoid = AppLocalizations.of(context).avoidPrefix;
-    final typeName = ChallengeMappings.name(challenge.type, context);
 
-    final avoidText = screenWidth < 400
-        ? capitalize(typeName)
-        : avoid + " " + typeName;
+    print(screenWidth);
+
+    final avoidText = screenWidth < 380
+        ? AppLocalizations.of(context).getShortChallengeName(challenge.type)
+        : screenWidth < 500
+        ? AppLocalizations.of(context).getMediumChallengeName(challenge.type)
+        : AppLocalizations.of(context).getLongChallengeName(challenge.type);
 
     print(MediaQuery.of(context).size.width);
     return Container(
