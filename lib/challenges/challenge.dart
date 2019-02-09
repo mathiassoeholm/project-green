@@ -6,6 +6,8 @@ part 'challenge.g.dart';
 abstract class Challenge implements Built<Challenge, ChallengeBuilder> {
   ChallengeType get type;
 
+  DateTime get start;
+
   Challenge._();
   factory Challenge([updates(ChallengeBuilder b)]) = _$Challenge;
 }

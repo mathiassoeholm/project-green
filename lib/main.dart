@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:project_green/appstate/app_state.dart';
@@ -13,37 +15,25 @@ import 'package:redux/redux.dart';
 
 void main() {
 
+  final random = Random();
+
   final initialState = AppState((b) => b
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b
-        ..type = ChallengeType.beef,
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
-        ..type = ChallengeType.flying,
+        ..type = ChallengeType.flying
+        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
-        ..type = ChallengeType.beef,
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
-        ..type = ChallengeType.flying,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.beef,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.beef,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.beef,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.beef,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.beef,
-      ),
-      Challenge((b) => b
-        ..type = ChallengeType.beef,
+        ..type = ChallengeType.beef
+        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
     ]).toBuilder(),
   );

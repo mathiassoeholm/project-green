@@ -18,6 +18,7 @@ main() {
 
       final newChallenge = Challenge((b) => b
         ..type = ChallengeType.beef
+        ..start = DateTime(2018, 12, 24)
       );
 
       store.dispatch(AddChallengeAction(newChallenge));

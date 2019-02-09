@@ -9,13 +9,18 @@ part of 'challenge.dart';
 class _$Challenge extends Challenge {
   @override
   final ChallengeType type;
+  @override
+  final DateTime start;
 
   factory _$Challenge([void updates(ChallengeBuilder b)]) =>
       (new ChallengeBuilder()..update(updates)).build();
 
-  _$Challenge._({this.type}) : super._() {
+  _$Challenge._({this.type, this.start}) : super._() {
     if (type == null) {
       throw new BuiltValueNullFieldError('Challenge', 'type');
+    }
+    if (start == null) {
+      throw new BuiltValueNullFieldError('Challenge', 'start');
     }
   }
 
@@ -29,17 +34,19 @@ class _$Challenge extends Challenge {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Challenge && type == other.type;
+    return other is Challenge && type == other.type && start == other.start;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, type.hashCode));
+    return $jf($jc($jc(0, type.hashCode), start.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Challenge')..add('type', type))
+    return (newBuiltValueToStringHelper('Challenge')
+          ..add('type', type)
+          ..add('start', start))
         .toString();
   }
 }
@@ -51,11 +58,16 @@ class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
   ChallengeType get type => _$this._type;
   set type(ChallengeType type) => _$this._type = type;
 
+  DateTime _start;
+  DateTime get start => _$this._start;
+  set start(DateTime start) => _$this._start = start;
+
   ChallengeBuilder();
 
   ChallengeBuilder get _$this {
     if (_$v != null) {
       _type = _$v.type;
+      _start = _$v.start;
       _$v = null;
     }
     return this;
@@ -76,7 +88,7 @@ class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
 
   @override
   _$Challenge build() {
-    final _$result = _$v ?? new _$Challenge._(type: type);
+    final _$result = _$v ?? new _$Challenge._(type: type, start: start);
     replace(_$result);
     return _$result;
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/challenges/challenge_mappings.dart';
 import 'package:project_green/localization/app_localizations.dart';
+import 'package:project_green/localization/date_formatting.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
 class ChallengeCard extends StatelessWidget {
@@ -34,7 +35,7 @@ class ChallengeCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(5.0)
       ),
       child: Stack(
-        children: [
+        children: <Widget>[
           Positioned(
             left: 0, bottom: 0, top: 0, right: sorryButtonWidth + 2*sorryButtonPadding,
             child: Row(
@@ -70,7 +71,10 @@ class ChallengeCard extends StatelessWidget {
                       /// Spacing between texts
                       height: 6.0,
                     ),
-                    Text("30 dage",
+                    Text(DateFormatting.getDurationString(AppLocalizations.of(context),
+                        fromDate: challenge.start,
+                        toDate: DateTime.now(),
+                      ),
                       style: Theme.of(context).textTheme.subtitle,
                     ),
                   ],
