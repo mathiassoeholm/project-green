@@ -46,7 +46,12 @@ class HomeState extends State<Home> {
                 Positioned(
                   left: 0, right: 0, top: 0, height: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - _offset) + pageBorderRadius,
                   child: Container(
-                    color: Colors.blue,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/cover_image.png'),
+                        fit: BoxFit.cover
+                      )
+                    ),
                   ),
                 ),
                 Positioned(
@@ -70,6 +75,8 @@ class HomeState extends State<Home> {
                     slivers: <Widget>[
                       SliverPersistentHeader(
                         pinned: true,
+                        /// We use the invisible persistent header to push the list below our custom app bar.
+                        /// This also enables the list to move upwards until it is appBarMinHeight away from the top.
                         delegate: InvisiblePersistentHeaderDelegate(
                           minSize: 0,
                           maxSize: appBarMaxHeight - appBarMinHeight - safeAreaTop,
