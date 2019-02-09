@@ -32,6 +32,26 @@ class AppLocalizations {
     return _text[locale.languageCode]['avoid_prefix'];
   }
 
+  String get yearSingular {
+    return _text[locale.languageCode]['year_singular'];
+  }
+
+  String get yearPlural {
+    return _text[locale.languageCode]['year_plural'];
+  }
+
+  String get daySingular {
+    return _text[locale.languageCode]['day_singular'];
+  }
+
+  String get dayPlural {
+    return _text[locale.languageCode]['day_plural'];
+  }
+
+  String get and {
+    return _text[locale.languageCode]['and'];
+  }
+
   String get challengeBeef {
     return _text[locale.languageCode]['challenge_beef'];
   }

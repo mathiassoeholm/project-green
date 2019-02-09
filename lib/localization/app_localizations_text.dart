@@ -9,6 +9,11 @@ Map<String, Map<String, String>> _text = {
     'challenge_flying': 'flying',
     'current_streak': 'Current streak',
     'longest_streak': 'Longest streak',
+    'year_singular': 'year',
+    'year_plural': 'years',
+    'day_singular': 'day',
+    'day_plural': 'days',
+    'and': 'and',
   },
   'da': {
     'title': 'App Titel',
@@ -18,5 +23,10 @@ Map<String, Map<String, String>> _text = {
     'challenge_flying': 'at flyve',
     'current_streak': 'Nuværende streak',
     'longest_streak': 'Længste streak',
+    'year_singular': 'år',
+    'year_plural': 'år',
+    'day_singular': 'dag',
+    'day_plural': 'dage',
+    'and': 'og',
   },
 };
