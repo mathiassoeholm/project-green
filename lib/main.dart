@@ -36,6 +36,26 @@ void main() {
         ..type = ChallengeType.beef
         ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+
     ]).toBuilder(),
   );
 

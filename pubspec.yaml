@@ -17,6 +17,7 @@ dependencies:
   flutter_redux: ^0.5.3
   built_value: ^6.3.0
   built_collection: ^4.1.0
+  outline_material_icons: ^0.1.0
   flutter:
     sdk: flutter
   flutter_localizations:
