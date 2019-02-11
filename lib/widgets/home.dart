@@ -105,7 +105,6 @@ class HomeState extends State<Home> {
                   child: CustomTabBar(),
                 )
               ),
-              //ThatsOkayModal(),
             ],
           ),
         );
@@ -120,19 +119,25 @@ class HomeState extends State<Home> {
           child: ChallengeCard(vm.challenges[index],
             today: vm.today,
             onTapSorry: () {
-              var overLayEntry;
 
-              overLayEntry = OverlayEntry(
-                builder: (BuildContext context) {
-                  return ThatsOkayModal(
-                    hideModal: () {
-                      overLayEntry.remove();
-                    },
-                  );
-                }
+              showGeneralDialog(
+                  barrierLabel: "heyyyyy",
+                  barrierDismissible: true,
+                  transitionDuration: Duration(milliseconds: 2000),
+                  transitionBuilder: null,
+                  context: context,
+
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    animation.addListener(() {
+                      print(animation.value);
+                    });
+
+                    return ThatsOkayModal(
+                      openAnimation: animation,
+                      closeAnimation: secondaryAnimation,
+                    );
+                  },
               );
-
-              Navigator.of(context).overlay.insert(overLayEntry);
             },
           ),
       );
