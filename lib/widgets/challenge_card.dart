@@ -3,6 +3,7 @@ import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/challenges/challenge_mappings.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/localization/date_formatting.dart';
+import 'package:project_green/widgets/sorry_button.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
 class ChallengeCard extends StatelessWidget {
@@ -11,8 +12,12 @@ class ChallengeCard extends StatelessWidget {
 
   final Challenge challenge;
   final DateTime today;
+  final VoidCallback onTapSorry;
 
-  ChallengeCard(this.challenge, this.today);
+  ChallengeCard(this.challenge, {
+    this.today,
+    this.onTapSorry,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -86,36 +91,8 @@ class ChallengeCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: sorryButtonPadding),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Container(
-                  height: 30,
-                  decoration: BoxDecoration(
-                    color: ThemeValues.green,
-                    borderRadius: BorderRadius.circular(100),
-                    boxShadow: ThemeValues.buttonDropShadow,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 7.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text("SORRY",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Roboto",
-                              fontWeight: FontWeight.w800,
-                              fontSize: 15,
-                            )
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 3.0),
-                          child: Icon(Icons.public,
-                            color: Colors.white,
-                            size: 22,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                child: SorryButton(
+                  onTap: onTapSorry,
                 ),
               ),
             ),
