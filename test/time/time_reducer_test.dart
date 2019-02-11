@@ -4,12 +4,6 @@ import 'package:project_green/appstate/app_state_reducer.dart';
 import 'package:project_green/time/time_actions.dart';
 import 'package:redux/redux.dart';
 
-
-/// UP NEXT:
-/// Make test for challenge duration selector
-/// Add test to check if card changes UI when 'today' changes
-/// Use selector in view model for challenge card
-
 main() {
   group('Time Reducer', () {
     test('should change day', () {

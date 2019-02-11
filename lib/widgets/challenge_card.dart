@@ -10,23 +10,21 @@ class ChallengeCard extends StatelessWidget {
   static const double sorryButtonPadding = 7.0;
 
   final Challenge challenge;
+  final DateTime today;
 
-  ChallengeCard(this.challenge);
+  ChallengeCard(this.challenge, this.today);
 
   @override
   Widget build(BuildContext context) {
 
     final screenWidth = MediaQuery.of(context).size.width;
 
-    print(screenWidth);
-
-    final avoidText = screenWidth < 380
-        ? AppLocalizations.of(context).getShortChallengeName(challenge.type)
+    final challengeTitle = screenWidth < 380
+        ? AppLocalizations.of(context).getShortChallengeTitle(challenge.type)
         : screenWidth < 500
-        ? AppLocalizations.of(context).getMediumChallengeName(challenge.type)
-        : AppLocalizations.of(context).getLongChallengeName(challenge.type);
+        ? AppLocalizations.of(context).getMediumChallengeTitle(challenge.type)
+        : AppLocalizations.of(context).getLongChallengeTitle(challenge.type);
 
-    print(MediaQuery.of(context).size.width);
     return Container(
       height: 74,
       decoration: BoxDecoration(
@@ -64,7 +62,7 @@ class ChallengeCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      avoidText,
+                      challengeTitle,
                       style: Theme.of(context).textTheme.title,
                     ),
                     Container(
@@ -73,7 +71,7 @@ class ChallengeCard extends StatelessWidget {
                     ),
                     Text(DateFormatting.getDurationString(AppLocalizations.of(context),
                         fromDate: challenge.start,
-                        toDate: DateTime.now(),
+                        toDate: today,
                       ),
                       style: Theme.of(context).textTheme.subtitle,
                     ),

@@ -102,7 +102,7 @@ class HomeState extends State<Home> {
     return (context, index) {
       return Padding(
           padding: const EdgeInsets.fromLTRB(pageBorderRadius, pageBorderRadius, pageBorderRadius, 0),
-          child: ChallengeCard(vm.challenges[index]),
+          child: ChallengeCard(vm.challenges[index], vm.today),
       );
     };
   }
@@ -110,14 +110,17 @@ class HomeState extends State<Home> {
 
 class _ViewModel {
   final BuiltList<Challenge> challenges;
+  final DateTime today;
 
   _ViewModel({
     @required this.challenges,
+    @required this.today,
   });
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
         challenges: store.state.challenges,
+      today: store.state.time.today,
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:project_green/appstate/app_state_reducer.dart';
 import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
+import 'package:project_green/time/time_updater.dart';
 import 'package:project_green/widgets/create_challenge.dart';
 import 'package:project_green/widgets/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -41,6 +42,11 @@ void main() {
   final Store<AppState> store = Store<AppState>(
       appStateReducer,
       initialState: initialState,
+  );
+
+  startTimeUpdater(
+    store: store,
+    interval: Duration(seconds: 2)
   );
 
   runApp(StoreProvider(

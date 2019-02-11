@@ -51,15 +51,15 @@ class AppLocalizations {
   }
 
   // Challenges
-  String getLongChallengeName(ChallengeType challengeType) {
+  String getLongChallengeTitle(ChallengeType challengeType) {
     return _text[locale.languageCode]['challenge_${enumName(challengeType)}_long'];
   }
 
-  String getMediumChallengeName(ChallengeType challengeType) {
+  String getMediumChallengeTitle(ChallengeType challengeType) {
     return _text[locale.languageCode]['challenge_${enumName(challengeType)}_medium'];
   }
 
-  String getShortChallengeName(ChallengeType challengeType) {
+  String getShortChallengeTitle(ChallengeType challengeType) {
     return _text[locale.languageCode]['challenge_${enumName(challengeType)}_short'];
   }
 
