@@ -21,7 +21,7 @@ class PrimaryActionButton extends StatelessWidget {
       child: Container(
         height: height,
         decoration: BoxDecoration(
-          boxShadow: ThemeValues.boxShadow,
+          boxShadow: ThemeValues.cardDropShadow,
           borderRadius: BorderRadius.circular(height/2.0),
         ),
         child: ClipRRect(

@@ -127,6 +127,7 @@ class HomeState extends State<Home> {
                   context: context,
                   pageBuilder: (context, animation, secondaryAnimation) {
                     return ThatsOkayModal(
+                      challenge: vm.challenges[index],
                       openAnimation: animation,
                     );
                   },

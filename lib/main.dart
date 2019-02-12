@@ -87,7 +87,12 @@ void main() {
           subtitle: TextStyle(
             fontSize: 14,
             color: Color(0xFF8D8D8D),
-          )
+          ),
+          display1: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+          ),
         )),
       ),
       localizationsDelegates: [

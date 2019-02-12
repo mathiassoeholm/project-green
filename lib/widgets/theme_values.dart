@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class ThemeValues {
-  static const boxShadow = [
-    BoxShadow(
-      color: Colors.black26,
-      offset: Offset(-3, 2),
-      blurRadius: 3,
-    )
-  ];
-
   static const cardDropShadow = [
     BoxShadow(
       color: Color(0x26000000),
       offset: Offset(0, 3.5),
       blurRadius: 4,
+    )
+  ];
+
+  static const modalDropShadow = [
+    BoxShadow(
+      color: Color(0x2E000000),
+      offset: Offset(0, 4),
+      blurRadius: 8,
     )
   ];
 

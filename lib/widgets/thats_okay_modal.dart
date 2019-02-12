@@ -1,14 +1,15 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
-/// UP NEXT: ----------------------------------------------------------------------
-// Prettify onTapSorry method
+import 'package:project_green/challenges/challenge.dart';
+import 'package:project_green/localization/app_localizations.dart';
+import 'package:project_green/widgets/theme_values.dart';
 
 class ThatsOkayModal extends StatefulWidget {
   final Animation<double> openAnimation;
+  final Challenge challenge;
 
   const ThatsOkayModal({
+    @required this.challenge,
     @required this.openAnimation,
   });
 
@@ -62,9 +63,48 @@ class ThatsOkayModalState extends State<ThatsOkayModal> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(24),
                   color: Colors.white,
+                  boxShadow: ThemeValues.modalDropShadow,
                 ),
                 width: 346,
                 height: 249,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(AppLocalizations.of(context).thatsOkay,
+                        style: Theme.of(context).textTheme.display1,
+                      ),
+                      Text('${AppLocalizations.of(context).getEncouragement(widget.challenge.type)}'
+                        '\n${AppLocalizations.of(context).youAreAwesome}',
+                        style: Theme.of(context).textTheme.title.merge(TextStyle(
+                          height: 1.65,
+                        )),
+                        textAlign: TextAlign.center,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(14),
+                          decoration: BoxDecoration(
+                            color: ThemeValues.green,
+                            borderRadius: BorderRadius.circular(100),
+                            boxShadow: ThemeValues.buttonDropShadow,
+                          ),
+                          child: Text(AppLocalizations.of(context).imAwesome,
+                            style: Theme.of(context).textTheme.title.merge(TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            )),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
