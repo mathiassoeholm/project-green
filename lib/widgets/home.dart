@@ -119,22 +119,15 @@ class HomeState extends State<Home> {
           child: ChallengeCard(vm.challenges[index],
             today: vm.today,
             onTapSorry: () {
-
               showGeneralDialog(
-                  barrierLabel: "heyyyyy",
-                  barrierDismissible: true,
-                  transitionDuration: Duration(milliseconds: 2000),
-                  transitionBuilder: null,
+                  barrierDismissible: false,
+                  transitionDuration: Duration(milliseconds: 450),
+                  // Transition is handled in modal itself, so simply return child
+                  transitionBuilder: (_, __, ___, child) => child,
                   context: context,
-
                   pageBuilder: (context, animation, secondaryAnimation) {
-                    animation.addListener(() {
-                      print(animation.value);
-                    });
-
                     return ThatsOkayModal(
                       openAnimation: animation,
-                      closeAnimation: secondaryAnimation,
                     );
                   },
               );
