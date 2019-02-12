@@ -4,7 +4,9 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/challenges/challenge.dart';
-import 'package:project_green/widgets/InvisiblePersistentHeaderDelegate.dart';
+import 'package:project_green/widgets/challenge_list.dart';
+import 'package:project_green/widgets/create_challenge.dart';
+import 'package:project_green/widgets/invisible_persistent_header_delegate.dart';
 import 'package:project_green/widgets/challenge_card.dart';
 import 'package:project_green/widgets/custom_tab_bar.dart';
 import 'package:project_green/widgets/thats_okay_modal.dart';
@@ -71,33 +73,23 @@ class HomeState extends State<Home> {
               ),
               Positioned(
                 left: 0, right: 0, top: appBarMinHeight + safeAreaTop, bottom: 0,
-                child: CustomScrollView(
-                  physics: BouncingScrollPhysics(),
+                child: ChallengeList(
+                  challenges: vm.challenges,
+                  today: vm.today,
+                  padding: pageBorderRadius,
                   controller: _controller,
-                  slivers: <Widget>[
-                    SliverPersistentHeader(
-                      pinned: true,
-                      /// We use the invisible persistent header to push the list below our custom app bar.
-                      /// This also enables the list to move upwards until it is appBarMinHeight away from the top.
-                      delegate: InvisiblePersistentHeaderDelegate(
-                        minSize: 0,
-                        maxSize: appBarMaxHeight - appBarMinHeight - safeAreaTop,
-                      ),
-                    ),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        _createSliverListDelegate(vm),
-                        childCount: vm.challenges.length,
-                      )
-                    ),
-                    /// Bottom list padding
-                    SliverToBoxAdapter(
-                      child: Container(
-                        height: CustomTabBar.totalHeight + pageBorderRadius,
-                      ),
-                    )
-                  ],
-                ),
+                  invisibleHeaderMaxSize: appBarMaxHeight - appBarMinHeight - safeAreaTop,
+                )
+              ),
+              Positioned.fill(
+                child: LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    return Transform(
+                      transform: Matrix4.translationValues(0, (1-0)*constraints.maxHeight, 0),
+                      child: CreateChallenge()
+                    );
+                  },
+                )
               ),
               Positioned.fill(
                 child: Align(
@@ -110,32 +102,6 @@ class HomeState extends State<Home> {
         );
       },
     );
-  }
-
-  IndexedWidgetBuilder _createSliverListDelegate(_ViewModel vm) {
-    return (context, index) {
-      return Padding(
-          padding: const EdgeInsets.fromLTRB(pageBorderRadius, pageBorderRadius, pageBorderRadius, 0),
-          child: ChallengeCard(vm.challenges[index],
-            today: vm.today,
-            onTapSorry: () {
-              showGeneralDialog(
-                  barrierDismissible: false,
-                  transitionDuration: Duration(milliseconds: 450),
-                  // Transition is handled in modal itself, so simply return child
-                  transitionBuilder: (_, __, ___, child) => child,
-                  context: context,
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return ThatsOkayModal(
-                      challenge: vm.challenges[index],
-                      openAnimation: animation,
-                    );
-                  },
-              );
-            },
-          ),
-      );
-    };
   }
 }
 
