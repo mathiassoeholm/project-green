@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_green/widgets/green_button.dart';
 
 class CreateChallenge extends StatelessWidget {
   final VoidCallback close;
@@ -16,6 +17,9 @@ class CreateChallenge extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(),
+          ),
+          GreenButton(
+            text: 'LET’S DO IT!',
           ),
           Align(
             alignment: Alignment.bottomCenter,
