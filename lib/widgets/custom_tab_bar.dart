@@ -4,10 +4,15 @@ import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
 class CustomTabBar extends StatelessWidget {
-
   static const totalHeight = 78.0;
   static const tabBarHeight = 50.0;
   static const addButtonSize = 66.0;
+
+  final VoidCallback openCreateChallenge;
+
+  const CustomTabBar({
+    @required this.openCreateChallenge,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +52,7 @@ class CustomTabBar extends StatelessWidget {
           child: Align(
             alignment: Alignment.topCenter,
             child: GestureDetector(
-              onTap: () { },
+              onTap: openCreateChallenge,
               child: Stack(
                 children: <Widget>[
                   Positioned.fill(

@@ -21,18 +21,40 @@ class Home extends StatefulWidget {
   }
 }
 
-class HomeState extends State<Home> {
+class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   static const double appBarMaxHeight = 200.0;
   static const double appBarMinHeight = 50.0;
   static const double pageBorderRadius = 20.0;
 
-  final ScrollController _controller = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   double _offset = 0;
 
+  AnimationController _createTransitionController;
+  Animation<double> _createTransitionAnimation;
+
   HomeState() {
-    _controller.addListener(() {
+    _scrollController.addListener(() {
       setState(() {
-        _offset = _controller.offset;
+        _offset = _scrollController.offset;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _createTransitionController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this
+    );
+
+    _createTransitionAnimation = CurvedAnimation(
+      parent: _createTransitionController,
+      curve: Curves.fastOutSlowIn
+    )..addListener(() {
+      setState(() {
+        // Rebuild
       });
     });
   }
@@ -41,66 +63,93 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final safeAreaTop = MediaQuery.of(context).padding.top;
 
-    return StoreConnector<AppState, _ViewModel>(
-      converter: _ViewModel.fromStore,
-      builder: (BuildContext context, _ViewModel vm) {
-        return Material(
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                left: 0, right: 0, top: 0, height: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - _offset) + pageBorderRadius,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/cover_image.png'),
-                      fit: BoxFit.cover
-                    )
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 0, right: 0, top: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - _offset), bottom: 0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ThemeValues.lightBackground,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(pageBorderRadius),
-                      topLeft: Radius.circular(pageBorderRadius)
-                    ),
-                    boxShadow: ThemeValues.listDropShadow,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 0, right: 0, top: appBarMinHeight + safeAreaTop, bottom: 0,
-                child: ChallengeList(
-                  challenges: vm.challenges,
-                  today: vm.today,
-                  padding: pageBorderRadius,
-                  controller: _controller,
-                  invisibleHeaderMaxSize: appBarMaxHeight - appBarMinHeight - safeAreaTop,
-                )
-              ),
-              Positioned.fill(
-                child: LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                    return Transform(
-                      transform: Matrix4.translationValues(0, (1-0)*constraints.maxHeight, 0),
-                      child: CreateChallenge()
-                    );
-                  },
-                )
-              ),
-              Positioned.fill(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: CustomTabBar(),
-                )
-              ),
-            ],
-          ),
-        );
+    return WillPopScope(
+      onWillPop: () async {
+        if (_createTransitionController.value > 0) {
+          _createTransitionController.reverse();
+          return false;
+        } else {
+          return true;
+        }
       },
+      child: StoreConnector<AppState, _ViewModel>(
+        converter: _ViewModel.fromStore,
+        builder: (BuildContext context, _ViewModel vm) {
+          return Material(
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  left: 0, right: 0, top: 0, height: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - _offset) + pageBorderRadius,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/cover_image.png'),
+                        fit: BoxFit.cover
+                      )
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 0, right: 0, top: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - _offset), bottom: 0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ThemeValues.lightBackground,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(pageBorderRadius),
+                        topLeft: Radius.circular(pageBorderRadius)
+                      ),
+                      boxShadow: ThemeValues.listDropShadow,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 0, right: 0, top: appBarMinHeight + safeAreaTop, bottom: 0,
+                  child: ChallengeList(
+                    challenges: vm.challenges,
+                    today: vm.today,
+                    padding: pageBorderRadius,
+                    controller: _scrollController,
+                    invisibleHeaderMaxSize: appBarMaxHeight - appBarMinHeight - safeAreaTop,
+                  )
+                ),
+                Positioned.fill(
+                  child: LayoutBuilder(
+                    builder: (BuildContext context, BoxConstraints constraints) {
+                      return Transform(
+                        transform: Matrix4.translationValues(
+                          0,
+                          (1-_createTransitionAnimation.value)*constraints.maxHeight,
+                          0,
+                        ),
+                        child: CreateChallenge(
+                          close: _createTransitionController.reverse,
+                        ),
+                      );
+                    },
+                  )
+                ),
+                Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Transform(
+                      transform: Matrix4.translationValues(
+                        0,
+                        CustomTabBar.totalHeight*_createTransitionAnimation.value,
+                        0,
+                      ),
+                      child: CustomTabBar(
+                        openCreateChallenge: () {
+                          _createTransitionController.forward();
+                        },
+                      ),
+                    ),
+                  )
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
