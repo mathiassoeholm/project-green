@@ -15,10 +15,27 @@ class CreateChallenge extends StatelessWidget {
       color: Colors.white,
       child: Column(
         mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Expanded(child: ChallengeCarousel()),
-          GreenButton(
-            text: 'LET’S DO IT!',
+          Flexible(
+            flex: 2,
+            child: Container(
+              height: 250,
+              child: ChallengeCarousel()
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              height: 150,
+              color: Colors.blue,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GreenButton(
+              text: 'LET’S DO IT!',
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,

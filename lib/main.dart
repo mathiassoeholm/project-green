@@ -107,7 +107,6 @@ void main() {
       initialRoute: '/',
       routes: {
         '/': (context) => Home(),
-        '/create_challenge': (context) => CreateChallenge(),
       },
     ),
   ));

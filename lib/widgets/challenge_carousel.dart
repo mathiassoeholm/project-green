@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class ChallengeCarousel extends StatefulWidget {
@@ -7,16 +9,18 @@ class ChallengeCarousel extends StatefulWidget {
 
 class _ChallengeCarouselState extends State<ChallengeCarousel> {
   PageController controller;
-  int currentpage = 0;
+
+  // Start with a bug number such the it allows scrolling left
+  int currentPage = 1000;
 
   @override
   void initState() {
     super.initState();
 
     controller = PageController(
-      initialPage: currentpage,
+      initialPage: currentPage,
       keepPage: false,
-      viewportFraction: 0.5,
+      viewportFraction: 0.7,
     );
   }
 
@@ -25,7 +29,7 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
     return PageView.builder(
       onPageChanged: (value) {
         setState(() {
-          currentpage = value;
+          currentPage = value;
         });
       },
       controller: controller,
@@ -36,6 +40,17 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
   Widget buildItem(BuildContext context, int index) {
     return AnimatedBuilder(
       animation: controller,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: AspectRatio(
+            aspectRatio: 1.0,
+            child: Container(
+              color: Colors.red,
+            ),
+          ),
+        ),
+      ),
       builder: (context, child) {
         var value = 1.0;
         if (controller.position.haveDimensions) {
@@ -43,13 +58,13 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
           value = (1 - (value.abs() * .5)).clamp(0.0, 1.0);
         }
 
-        return Center(
-          child: Container(
-            width: 200,
-            height: 200,
-            color: Colors.red,
-            child: child,
-          ),
+        final easedValue = Curves.easeInOut.transform(value);
+        final scale = lerpDouble(0.8, 1.0, easedValue);
+
+        return Transform(
+          alignment: Alignment.center,
+          transform: Matrix4.diagonal3Values(scale, scale, scale),
+          child: child
         );
       },
     );
