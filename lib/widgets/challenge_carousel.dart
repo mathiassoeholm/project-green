@@ -3,24 +3,30 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class ChallengeCarousel extends StatefulWidget {
+
+
   @override
   _ChallengeCarouselState createState() => _ChallengeCarouselState();
 }
 
 class _ChallengeCarouselState extends State<ChallengeCarousel> {
+  static const containerSize = 236.0;
+
   PageController controller;
 
   // Start with a bug number such the it allows scrolling left
   int currentPage = 1000;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final screenWidth = MediaQuery.of(context).size.width;
 
     controller = PageController(
       initialPage: currentPage,
       keepPage: false,
-      viewportFraction: 0.7,
+      viewportFraction: (containerSize)/screenWidth,
     );
   }
 
@@ -42,9 +48,9 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
       animation: controller,
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: AspectRatio(
-            aspectRatio: 1.0,
+            aspectRatio: 1,
             child: Container(
               color: Colors.red,
             ),
