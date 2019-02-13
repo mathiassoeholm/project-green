@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_green/widgets/challenge_carousel.dart';
 import 'package:project_green/widgets/green_button.dart';
 
 class CreateChallenge extends StatelessWidget {
@@ -15,9 +16,7 @@ class CreateChallenge extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Expanded(
-            child: Container(),
-          ),
+          Expanded(child: ChallengeCarousel()),
           GreenButton(
             text: 'LET’S DO IT!',
           ),
