@@ -22,12 +22,9 @@ class CreateChallenge extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Container(
-                  height: 236,
-                  child: ChallengeCarousel()
-                ),
+              child: Container(
+                height: 236,
+                child: ChallengeCarousel()
               ),
             ),
             Flexible(

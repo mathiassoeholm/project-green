@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ThemeValues {
+  static const carouselDropShadow = [
+    BoxShadow(
+      color: Color(0x20000000),
+      offset: Offset(0, 4),
+      blurRadius: 15,
+    )
+  ];
+
   static const cardDropShadow = [
     BoxShadow(
       color: Color(0x26000000),

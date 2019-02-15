@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:project_green/widgets/theme_values.dart';
 
 class ChallengeCarousel extends StatefulWidget {
 
@@ -48,11 +49,15 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
       animation: controller,
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
           child: AspectRatio(
             aspectRatio: 1,
             child: Container(
-              color: Colors.red,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: ThemeValues.carouselDropShadow,
+                borderRadius: BorderRadius.circular(22)
+              ),
             ),
           ),
         ),
