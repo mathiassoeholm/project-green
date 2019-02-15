@@ -93,6 +93,15 @@ void main() {
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
+          button: TextStyle(
+            fontSize: 17,
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
+          body1: TextStyle(
+            fontSize: 15,
+            color: Color(0xFF434242),
+          ),
         )),
       ),
       localizationsDelegates: [

@@ -22,10 +22,7 @@ class GreenButton extends StatelessWidget {
           boxShadow: ThemeValues.buttonDropShadow,
         ),
         child: Text(text,
-          style: Theme.of(context).textTheme.title.merge(TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-          )),
+          style: Theme.of(context).textTheme.button,
         ),
       ),
     );

@@ -64,19 +64,23 @@ class AppLocalizations {
 
   // Challenges
   String getLongChallengeTitle(ChallengeType challengeType) {
-    return _text[locale.languageCode]['challenge_${enumName(challengeType)}_long'];
+    return _text[locale.languageCode]['${enumName(challengeType)}_long'];
   }
 
   String getMediumChallengeTitle(ChallengeType challengeType) {
-    return _text[locale.languageCode]['challenge_${enumName(challengeType)}_medium'];
+    return _text[locale.languageCode]['${enumName(challengeType)}_medium'];
   }
 
   String getShortChallengeTitle(ChallengeType challengeType) {
-    return _text[locale.languageCode]['challenge_${enumName(challengeType)}_short'];
+    return _text[locale.languageCode]['${enumName(challengeType)}_short'];
   }
 
   String getEncouragement(ChallengeType challengeType) {
     return _text[locale.languageCode]['${enumName(challengeType)}_encouragement'];
+  }
+
+  String getDescription(ChallengeType challengeType) {
+    return _text[locale.languageCode]['${enumName(challengeType)}_description'];
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
