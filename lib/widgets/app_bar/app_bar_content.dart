@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_green/widgets/user_circle_avatar.dart';
+import 'package:project_green/widgets/app_bar/user_circle_avatar.dart';
 
 class AppBarContent extends StatelessWidget {
   final Stream<double> collapseFactorStream;

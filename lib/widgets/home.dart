@@ -5,7 +5,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/challenges/challenge.dart';
-import 'package:project_green/widgets/app_bar_content.dart';
+import 'package:project_green/widgets/app_bar/app_bar_content.dart';
 import 'package:project_green/widgets/challenge_list.dart';
 import 'package:project_green/widgets/create_challenge.dart';
 import 'package:project_green/widgets/custom_tab_bar.dart';
@@ -21,7 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  static const double appBarMaxHeight = 200.0;
+  static const double appBarMaxHeight = 210.0;
   static const double appBarMinHeight = 58.0;
   static const double pageBorderRadius = 20.0;
 
