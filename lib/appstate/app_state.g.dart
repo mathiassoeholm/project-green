@@ -11,11 +11,13 @@ class _$AppState extends AppState {
   final BuiltList<Challenge> challenges;
   @override
   final Time time;
+  @override
+  final User user;
 
   factory _$AppState([void updates(AppStateBuilder b)]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({this.challenges, this.time}) : super._() {
+  _$AppState._({this.challenges, this.time, this.user}) : super._() {
     if (challenges == null) {
       throw new BuiltValueNullFieldError('AppState', 'challenges');
     }
@@ -36,19 +38,22 @@ class _$AppState extends AppState {
     if (identical(other, this)) return true;
     return other is AppState &&
         challenges == other.challenges &&
-        time == other.time;
+        time == other.time &&
+        user == other.user;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, challenges.hashCode), time.hashCode));
+    return $jf(
+        $jc($jc($jc(0, challenges.hashCode), time.hashCode), user.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('AppState')
           ..add('challenges', challenges)
-          ..add('time', time))
+          ..add('time', time)
+          ..add('user', user))
         .toString();
   }
 }
@@ -66,12 +71,17 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   TimeBuilder get time => _$this._time ??= new TimeBuilder();
   set time(TimeBuilder time) => _$this._time = time;
 
+  UserBuilder _user;
+  UserBuilder get user => _$this._user ??= new UserBuilder();
+  set user(UserBuilder user) => _$this._user = user;
+
   AppStateBuilder();
 
   AppStateBuilder get _$this {
     if (_$v != null) {
       _challenges = _$v.challenges?.toBuilder();
       _time = _$v.time?.toBuilder();
+      _user = _$v.user?.toBuilder();
       _$v = null;
     }
     return this;
@@ -95,7 +105,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
     _$AppState _$result;
     try {
       _$result = _$v ??
-          new _$AppState._(challenges: challenges.build(), time: time.build());
+          new _$AppState._(
+              challenges: challenges.build(),
+              time: time.build(),
+              user: _user?.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -103,6 +116,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         challenges.build();
         _$failedField = 'time';
         time.build();
+        _$failedField = 'user';
+        _user?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'AppState', _$failedField, e.toString());

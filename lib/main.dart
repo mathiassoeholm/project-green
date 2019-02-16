@@ -19,6 +19,8 @@ void main() {
   final random = Random();
 
   final initialState = AppState((b) => b
+    ..user.displayName = 'afsdfa'
+    ..user.photoURL = 'https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg'
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b
         ..type = ChallengeType.beef
