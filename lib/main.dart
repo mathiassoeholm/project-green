@@ -20,7 +20,7 @@ void main() {
 
   final initialState = AppState((b) => b
     ..user.displayName = 'afsdfa'
-    ..user.photoURL = 'https://www.cobdoglaps.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg'
+    ..user.photoURL = 'http://new.mindfoxstudios.com/static/669027ccf7c531bdd8fb8fe9dac871ba/ba856/mathias.png'
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b
         ..type = ChallengeType.beef
