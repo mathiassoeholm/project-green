@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_green/widgets/app_bar/user_circle_avatar.dart';
+import 'package:project_green/widgets/app_bar/user_display_name.dart';
 
 class AppBarContent extends StatelessWidget {
   final Stream<double> collapseFactorStream;
@@ -16,7 +17,12 @@ class AppBarContent extends StatelessWidget {
           Positioned.fill(
             child: UserCircleAvatar(
               collapseFactorStream: collapseFactorStream,
-            )
+            ),
+          ),
+          Positioned.fill(
+            child: UserDisplayName(
+              collapseFactorStream: collapseFactorStream,
+            ),
           ),
         ],
       ),

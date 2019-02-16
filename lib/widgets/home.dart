@@ -30,7 +30,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   AnimationController _createTransitionController;
   Animation<double> _createTransitionAnimation;
-  final _appBarCollapseFactorController = StreamController<double>();
+  final _appBarCollapseFactorController = StreamController<double>.broadcast();
 
   @override
   void initState() {
@@ -105,7 +105,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       )
                     ),
                     child: AppBarContent(
-                      collapseFactorStream: _appBarCollapseFactorController.stream,
+                      collapseFactorStream: _appBarCollapseFactorController.stream.asBroadcastStream(),
                     ),
                   ),
                 ),

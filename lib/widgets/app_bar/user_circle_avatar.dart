@@ -15,20 +15,22 @@ class UserCircleAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, String>(
-      converter: (Store store) => store.state?.user?.photoURL,
-      builder: (BuildContext context, photoURL) {
+      converter: (Store<AppState> store) => store.state.user?.photoURL,
+      builder: (context, photoURL) {
         return LayoutBuilder(
           builder: (context, constraints) {
             return StreamBuilder<double>(
               stream: collapseFactorStream,
               builder: (context, snapshot) {
-                var collapseFactor = snapshot.hasData
+                final collapseFactor = snapshot.hasData
                     ? snapshot.data
                     : 0.0;
 
-                final sizeCollapseFactor = set01RangeThreshold(collapseFactor,
+                var sizeCollapseFactor = set01RangeThreshold(collapseFactor,
                   threshold: 0.1,
                 );
+
+                sizeCollapseFactor = Curves.decelerate.transform(sizeCollapseFactor);
 
                 final posCollapseFactor = set01RangeThreshold(collapseFactor,
                   threshold: 0.5,
