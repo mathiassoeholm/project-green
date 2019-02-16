@@ -43,7 +43,7 @@ Map<String, Map<String, String>> _text = {
     'beef_long': 'Undgå at spise oksekød',
     'beef_medium': 'Undgå oksekød',
     'beef_short': 'Oksekød',
-    'beef_encouragement': 'Jeg håber det smagte godt.',
+    'beef_encouragement': 'Jeg håber, det smagte godt.',
     'beef_description': 'Aliquam luctus vulputate dui eget laoreet. Ut imperdiet nisl vel tellus feugiat, quis gravida magna pellentesque. Vestibulum fermentum nunc eu nisl maximus, non sollicitudin mauris lobortis. Maecenas id gravida massa, at cursus felis. Vestibulum condimentum, nibh eu pulvinar fermentum, magna odio pretium ligula, sit amet pharetra nunc mauris vel ante.',
     'flying_long': 'Undgå at flyve',
     'flying_medium': 'Undgå at flyve',

@@ -8,7 +8,8 @@ import 'package:project_green/widgets/theme_values.dart';
 
 class ChallengeCarousel extends StatefulWidget {
   // Start with a big number such the it allows scrolling left
-  static const int firstPageIndex = 1000;
+  static const firstPageIndex = 1000;
+  static const containerSize = 270.0;
 
   final Function(ChallengeType) onSelectType;
 
@@ -21,7 +22,6 @@ class ChallengeCarousel extends StatefulWidget {
 }
 
 class _ChallengeCarouselState extends State<ChallengeCarousel> {
-  static const containerSize = 236.0;
 
   PageController controller;
 
@@ -39,7 +39,7 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
     controller = PageController(
       initialPage: currentPage,
       keepPage: false,
-      viewportFraction: (containerSize)/screenWidth,
+      viewportFraction: (ChallengeCarousel.containerSize)/screenWidth,
     );
   }
 

@@ -32,29 +32,29 @@ class CreateChallengeState extends State<CreateChallenge> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(
-              child: Container(
-                height: 236,
-                child: ChallengeCarousel(
-                  onSelectType: (type) {
-                    setState(() {
-                      selectedChallenge = type;
-                    });
-                  },
-                )
-              ),
+            Container(
+              height: ChallengeCarousel.containerSize,
+              child: ChallengeCarousel(
+                onSelectType: (type) {
+                  setState(() {
+                    selectedChallenge = type;
+                  });
+                },
+              )
             ),
-            Flexible(
-              flex: 1,
+            Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Text(AppLocalizations.of(context).getDescription(selectedChallenge),
-                  style: Theme.of(context).textTheme.body1,
+                child: Center(
+                  child: Text(AppLocalizations.of(context).getDescription(selectedChallenge),
+                    style: Theme.of(context).textTheme.body1,
+
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(bottom: 43.0),
               child: GreenButton(
                 onTap: widget.close,
                 text: 'LET’S DO IT!',
