@@ -42,11 +42,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     _createTransitionAnimation = CurvedAnimation(
       parent: _createTransitionController,
       curve: Curves.fastOutSlowIn
-    )..addListener(() {
-      setState(() {
-        // Rebuild
-      });
-    });
+    );
   }
 
   @override
@@ -104,38 +100,50 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     invisibleHeaderMaxSize: appBarMaxHeight - appBarMinHeight - safeAreaTop,
                   )
                 ),
-                Positioned.fill(
-                  child: LayoutBuilder(
-                    builder: (BuildContext context, BoxConstraints constraints) {
-                      return Transform(
-                        transform: Matrix4.translationValues(
-                          0,
-                          (1-_createTransitionAnimation.value)*constraints.maxHeight,
-                          0,
-                        ),
-                        child: CreateChallenge(
-                          close: _createTransitionController.reverse,
-                        ),
-                      );
-                    },
-                  )
-                ),
-                Positioned.fill(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Transform(
-                      transform: Matrix4.translationValues(
-                        0,
-                        (CustomTabBar.totalHeight + safeAreaBottom)*_createTransitionAnimation.value,
-                        0,
-                      ),
-                      child: CustomTabBar(
-                        openCreateChallenge: () {
-                          _createTransitionController.forward();
+                AnimatedBuilder(
+                  animation: _createTransitionAnimation,
+                  builder: (context, child) {
+                    return Positioned.fill(
+                      child: LayoutBuilder(
+                        builder: (BuildContext context, BoxConstraints constraints) {
+                          return Transform(
+                            transform: Matrix4.translationValues(
+                              0,
+                              (1-_createTransitionAnimation.value)*constraints.maxHeight,
+                              0,
+                            ),
+                            child: child,
+                          );
                         },
+                      )
+                    );
+                  },
+                  child: CreateChallenge(
+                    close: _createTransitionController.reverse,
+                  ),
+                ),
+                AnimatedBuilder(
+                  animation: _createTransitionAnimation,
+                  builder: (context, child) {
+                    return Positioned.fill(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Transform(
+                          transform: Matrix4.translationValues(
+                            0,
+                            (CustomTabBar.totalHeight + safeAreaBottom)*_createTransitionAnimation.value,
+                            0,
+                          ),
+                          child: child,
+                        ),
                       ),
-                    ),
-                  )
+                    );
+                  },
+                  child: CustomTabBar(
+                    openCreateChallenge: () {
+                      _createTransitionController.forward();
+                    },
+                  ),
                 ),
               ],
             ),
