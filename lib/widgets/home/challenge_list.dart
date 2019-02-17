@@ -1,10 +1,10 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:project_green/challenges/challenge.dart';
-import 'package:project_green/widgets/challenge_card.dart';
+import 'package:project_green/widgets/home/challenge_card.dart';
 import 'package:project_green/widgets/custom_tab_bar.dart';
 import 'package:project_green/widgets/app_bar/invisible_persistent_header_delegate.dart';
-import 'package:project_green/widgets/thats_okay_modal.dart';
+import 'package:project_green/widgets/home/thats_okay_modal.dart';
 
 class ChallengeList extends StatelessWidget {
   final BuiltList<Challenge> challenges;

@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/widgets/app_bar/app_bar_content.dart';
-import 'package:project_green/widgets/challenge_list.dart';
+import 'package:project_green/widgets/app_bar/custom_app_bar.dart';
+import 'package:project_green/widgets/home/challenge_list.dart';
 import 'package:project_green/widgets/create_challenge.dart';
 import 'package:project_green/widgets/custom_tab_bar.dart';
+import 'package:project_green/widgets/home/home_values.dart';
+import 'package:project_green/widgets/home/list_background.dart';
 import 'package:project_green/widgets/theme_values.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -21,15 +24,7 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  static const double appBarMaxHeight = 210.0;
-  static const double appBarMinHeight = 58.0;
-  static const double pageBorderRadius = 20.0;
-
   final ScrollController _scrollController = ScrollController();
-
-  double get scrollOffset => _scrollController.hasClients
-    ? _scrollController.offset
-    : 0;
 
   AnimationController _createTransitionController;
   Animation<double> _createTransitionAnimation;
@@ -92,44 +87,12 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
           return Material(
             child: Stack(
               children: <Widget>[
-                AnimatedBuilder(
-                  animation: _scrollController,
-                  builder: (context, child) {
-                    return Positioned(
-                      left: 0, right: 0, top: 0, height: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - scrollOffset) + pageBorderRadius,
-                      child: child,
-                    );
-                  },
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/cover_image.png'),
-                        fit: BoxFit.cover
-                      )
-                    ),
-                    child: AppBarContent(
-                      collapseFactorStream: _appBarCollapseFactorController.stream.asBroadcastStream(),
-                    ),
-                  ),
+                CustomAppBar(
+                  collapseFactorStream: _appBarCollapseFactorController.stream.asBroadcastStream(),
+                  scrollController: _scrollController,
                 ),
-                AnimatedBuilder(
-                  animation: _scrollController,
-                  builder: (context, child) {
-                    return Positioned(
-                      left: 0, right: 0, top: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - scrollOffset), bottom: 0,
-                      child: child,
-                    );
-                  },
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: ThemeValues.lightBackground,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(pageBorderRadius),
-                        topLeft: Radius.circular(pageBorderRadius)
-                      ),
-                      boxShadow: ThemeValues.listDropShadow,
-                    ),
-                  ),
+                ListBackground(
+                  scrollController: _scrollController,
                 ),
                 Positioned(
                   left: 0, right: 0, top: appBarMinHeight + safeAreaTop, bottom: 0,

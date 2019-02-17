@@ -9,7 +9,7 @@ import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/time/time_updater.dart';
 import 'package:project_green/widgets/create_challenge.dart';
-import 'package:project_green/widgets/home.dart';
+import 'package:project_green/widgets/home/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
