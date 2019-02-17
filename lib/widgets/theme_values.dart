@@ -5,7 +5,7 @@ class ThemeValues {
     BoxShadow(
       color: Color(0x20000000),
       offset: Offset(0, 4),
-      blurRadius: 15,
+      blurRadius: 8,
     )
   ];
 
