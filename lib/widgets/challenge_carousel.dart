@@ -34,7 +34,14 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final screenWidth = MediaQuery.of(context).size.width;
+    var screenWidth = MediaQuery.of(context).size.width;
+
+    /// MediaQuery.of(context).size returns 0 at startup in release mode,
+    /// we therefore need to handle this case.
+    /// Related issue: https://github.com/flutter/flutter/issues/25827
+    if (screenWidth == 0) {
+      screenWidth = 400;
+    }
 
     controller = PageController(
       initialPage: currentPage,
