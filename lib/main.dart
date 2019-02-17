@@ -19,7 +19,7 @@ void main() {
   final random = Random();
 
   final initialState = AppState((b) => b
-    ..user.displayName = 'afsdfa'
+    ..user.displayName = 'Mathias Søholm'
     ..user.photoURL = 'http://new.mindfoxstudios.com/static/669027ccf7c531bdd8fb8fe9dac871ba/ba856/mathias.png'
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b

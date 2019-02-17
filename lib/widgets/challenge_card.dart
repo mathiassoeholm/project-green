@@ -24,7 +24,7 @@ class ChallengeCard extends StatelessWidget {
 
     final screenWidth = MediaQuery.of(context).size.width;
 
-    final challengeTitle = screenWidth < 380
+    final challengeTitle = screenWidth < 370
         ? AppLocalizations.of(context).getShortChallengeTitle(challenge.type)
         : screenWidth < 500
         ? AppLocalizations.of(context).getMediumChallengeTitle(challenge.type)
