@@ -26,7 +26,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   static const double pageBorderRadius = 20.0;
 
   final ScrollController _scrollController = ScrollController();
-  double _offset = 0;
+
+  double get scrollOffset => _scrollController.hasClients
+    ? _scrollController.offset
+    : 0;
 
   AnimationController _createTransitionController;
   Animation<double> _createTransitionAnimation;
@@ -35,12 +38,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
-    _scrollController.addListener(() {
-      setState(() {
-        _offset = _scrollController.offset;
-      });
-    });
 
     _createTransitionController = AnimationController(
       duration: const Duration(milliseconds: 500),
@@ -64,7 +61,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     final safeAreaTop = MediaQuery.of(context).padding.top;
 
     _scrollController.addListener(() {
-      final collapseFactor = (_offset/(appBarMaxHeight-appBarMinHeight-safeAreaTop)).clamp(0.0, 1.0);
+      final collapseFactor = (_scrollController.offset/(appBarMaxHeight-appBarMinHeight-safeAreaTop)).clamp(0.0, 1.0);
       _appBarCollapseFactorController.add(collapseFactor);
     });
   }
@@ -75,7 +72,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  /// TODO: Can make build more efficient by using an AnimationBuilder, to build the parts based on animation. Instead of relying on setState being called in the listener.
   @override
   Widget build(BuildContext context) {
     final safeAreaTop = MediaQuery.of(context).padding.top;
@@ -96,8 +92,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
           return Material(
             child: Stack(
               children: <Widget>[
-                Positioned(
-                  left: 0, right: 0, top: 0, height: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - _offset) + pageBorderRadius,
+                AnimatedBuilder(
+                  animation: _scrollController,
+                  builder: (context, child) {
+                    return Positioned(
+                      left: 0, right: 0, top: 0, height: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - scrollOffset) + pageBorderRadius,
+                      child: child,
+                    );
+                  },
                   child: Container(
                     decoration: const BoxDecoration(
                       image: DecorationImage(
@@ -110,8 +112,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     ),
                   ),
                 ),
-                Positioned(
-                  left: 0, right: 0, top: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - _offset), bottom: 0,
+                AnimatedBuilder(
+                  animation: _scrollController,
+                  builder: (context, child) {
+                    return Positioned(
+                      left: 0, right: 0, top: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - scrollOffset), bottom: 0,
+                      child: child,
+                    );
+                  },
                   child: Container(
                     decoration: const BoxDecoration(
                       color: ThemeValues.lightBackground,
