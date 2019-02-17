@@ -79,6 +79,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final safeAreaTop = MediaQuery.of(context).padding.top;
+    final safeAreaBottom = MediaQuery.of(context).padding.bottom;
 
     return WillPopScope(
       onWillPop: () async {
@@ -154,7 +155,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     child: Transform(
                       transform: Matrix4.translationValues(
                         0,
-                        CustomTabBar.totalHeight*_createTransitionAnimation.value,
+                        (CustomTabBar.totalHeight + safeAreaBottom)*_createTransitionAnimation.value,
                         0,
                       ),
                       child: CustomTabBar(
