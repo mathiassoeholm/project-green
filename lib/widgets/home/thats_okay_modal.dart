@@ -29,10 +29,6 @@ class ThatsOkayModalState extends State<ThatsOkayModal> {
   void initState() {
     super.initState();
 
-    widget.openAnimation.addListener(() {
-      setState(() {});
-    });
-
     _blurAnimation = CurvedAnimation(parent: widget.openAnimation, curve: Curves.fastOutSlowIn);
     _scaleAnimation = CurvedAnimation(parent: widget.openAnimation, curve: Curves.fastOutSlowIn);
   }
@@ -45,19 +41,30 @@ class ThatsOkayModalState extends State<ThatsOkayModal> {
           onTap: () {
             Navigator.of(context).pop();
           },
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 4.0 * _blurAnimation.value,
-              sigmaY: 4.0 * _blurAnimation.value,
-            ),
-            child: Container(
-              decoration: new BoxDecoration(color: Color(0xFF585757).withOpacity(0.36 * _blurAnimation.value)),
-            ),
+          child: AnimatedBuilder(
+            animation: _blurAnimation,
+            builder: (context, child) {
+              return BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 4.0 * _blurAnimation.value,
+                  sigmaY: 4.0 * _blurAnimation.value,
+                ),
+                child: Container(
+                  decoration: new BoxDecoration(color: Color(0xFF585757).withOpacity(0.36 * _blurAnimation.value)),
+                ),
+              );
+            },
           ),
         ),
         Center(
-          child: ScaleTransition(
-            scale: _scaleAnimation,
+          child: AnimatedBuilder(
+            animation: _scaleAnimation,
+            builder: (context, child) {
+              return ScaleTransition(
+                scale: _scaleAnimation,
+                child: child,
+              );
+            },
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Container(
