@@ -3,6 +3,7 @@ import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/challenges/challenge_mappings.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/localization/date_formatting.dart';
+import 'package:project_green/widgets/home/home_values.dart';
 import 'package:project_green/widgets/sorry_button.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
@@ -31,7 +32,7 @@ class ChallengeCard extends StatelessWidget {
         : AppLocalizations.of(context).getLongChallengeTitle(challenge.type);
 
     return Container(
-      height: 74,
+      height: cardHeight,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: ThemeValues.cardDropShadow,

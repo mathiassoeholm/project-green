@@ -21,32 +21,55 @@ class UserDisplayName extends StatelessWidget {
         return StreamBuilder<double>(
           stream: collapseFactorStream,
           builder: (context, snapshot) {
-            var collapseFactor = snapshot.hasData
+            final collapseFactor = snapshot.hasData
               ? snapshot.data
               : 0.0;
 
-            final paddingCollapseFactor = set01RangeThreshold(collapseFactor,
-              threshold: 0.1,
+            final bottomTextInterpolation = mapFromRange(collapseFactor,
+                srcRange: [0.1, 0.3],
+                destRange: [0.0, 1.0]
             );
 
-            var alignCollapseFactor = set01RangeThreshold(collapseFactor,
-              threshold: 0.7,
+            final topTextInterpolation = mapFromRange(collapseFactor,
+                srcRange: [0.85, 1.0],
+                destRange: [0.0, 1.0]
             );
 
-            final topPadding = lerpDouble(130, 7.0, paddingCollapseFactor);
-
-            return Align(
-              alignment: Alignment(-alignCollapseFactor, -1.0),
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(62, topPadding, 62, 0),
-                child: Text(displayName,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
+            return Stack(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: lerpDouble(130, 100, bottomTextInterpolation)),
+                    child: Opacity(
+                      opacity: 1-bottomTextInterpolation,
+                      child: Text(displayName,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 60, top: lerpDouble(0, 10.0, topTextInterpolation)),
+                    child: Opacity(
+                      opacity: topTextInterpolation,
+                      child: Text(displayName,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             );
           },
         );

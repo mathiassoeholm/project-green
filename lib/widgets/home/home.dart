@@ -95,7 +95,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   child: ChallengeList(
                     challenges: vm.challenges,
                     today: vm.today,
-                    padding: pageBorderRadius,
                     controller: _scrollController,
                     invisibleHeaderMaxSize: appBarMaxHeight - appBarMinHeight - safeAreaTop,
                   )

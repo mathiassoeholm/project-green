@@ -1,28 +1,31 @@
+import 'dart:math';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/widgets/home/challenge_card.dart';
 import 'package:project_green/widgets/custom_tab_bar.dart';
 import 'package:project_green/widgets/app_bar/invisible_persistent_header_delegate.dart';
+import 'package:project_green/widgets/home/home_values.dart';
 import 'package:project_green/widgets/home/thats_okay_modal.dart';
 
 class ChallengeList extends StatelessWidget {
   final BuiltList<Challenge> challenges;
   final DateTime today;
-  final double padding;
   final ScrollController controller;
   final double invisibleHeaderMaxSize;
 
   const ChallengeList({
     @required this.challenges,
     @required this.today,
-    @required this.padding,
     @required this.controller,
     @required this.invisibleHeaderMaxSize,
   });
 
   @override
   Widget build(BuildContext context) {
+    final safeAreaBottom = MediaQuery.of(context).padding.bottom;
+
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       controller: controller,
@@ -42,12 +45,26 @@ class ChallengeList extends StatelessWidget {
               childCount: challenges.length,
             )
         ),
+        SliverToBoxAdapter(
+          child: () {
+            final viewportHeight = controller.hasClients && controller.position.haveDimensions
+              ? controller.position.viewportDimension
+              : 0;
+
+            final listHeight = (cardHeight+cardPadding)*challenges.length + CustomTabBar.totalHeight + safeAreaBottom;
+            final remainingSpace = max(0.0, viewportHeight-listHeight);
+
+            return Container(
+              height: remainingSpace,
+            );
+          }()
+        ),
         /// Bottom list padding
         SliverToBoxAdapter(
           child: Container(
-            height: CustomTabBar.totalHeight + padding,
+            height: CustomTabBar.totalHeight + safeAreaBottom,
           ),
-        )
+        ),
       ],
     );
   }
@@ -55,7 +72,7 @@ class ChallengeList extends StatelessWidget {
   IndexedWidgetBuilder _createSliverListDelegate() {
     return (context, index) {
       return Padding(
-        padding: EdgeInsets.fromLTRB(padding, padding, padding, 0),
+        padding: EdgeInsets.fromLTRB(cardPadding, cardPadding, cardPadding, 0),
         child: ChallengeCard(challenges[index],
           today: today,
           onTapSorry: () {

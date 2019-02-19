@@ -26,15 +26,19 @@ class UserCircleAvatar extends StatelessWidget {
                     ? snapshot.data
                     : 0.0;
 
-                var sizeCollapseFactor = set01RangeThreshold(collapseFactor,
-                  threshold: 0.1,
+                var sizeCollapseFactor = mapFromRange(collapseFactor,
+                  srcRange: [0.1, 1.0],
+                  destRange: [0.0, 1.0]
                 );
 
-                sizeCollapseFactor = Curves.decelerate.transform(sizeCollapseFactor);
+                sizeCollapseFactor = Curves.linear.transform(sizeCollapseFactor);
 
-                final posCollapseFactor = set01RangeThreshold(collapseFactor,
-                  threshold: 0.5,
+                var posCollapseFactor = mapFromRange(collapseFactor,
+                  srcRange: [0.4, 0.9],
+                  destRange: [0.0, 1.0]
                 );
+
+                posCollapseFactor = Curves.fastOutSlowIn.transform(posCollapseFactor);
 
                 final startPadding = 20.0;
                 final endPadding = 7.0;

@@ -27,8 +27,8 @@ void main() {
         ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
-        ..type = ChallengeType.flying
-        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
         ..type = ChallengeType.beef
@@ -36,26 +36,83 @@ void main() {
       ),
       Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
-      ),Challenge((b) => b
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2019, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.beef
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
 
     ]).toBuilder(),
