@@ -11,16 +11,21 @@ class _$User extends User {
   final String displayName;
   @override
   final String photoURL;
+  @override
+  final int totalPoints;
 
   factory _$User([void updates(UserBuilder b)]) =>
       (new UserBuilder()..update(updates)).build();
 
-  _$User._({this.displayName, this.photoURL}) : super._() {
+  _$User._({this.displayName, this.photoURL, this.totalPoints}) : super._() {
     if (displayName == null) {
       throw new BuiltValueNullFieldError('User', 'displayName');
     }
     if (photoURL == null) {
       throw new BuiltValueNullFieldError('User', 'photoURL');
+    }
+    if (totalPoints == null) {
+      throw new BuiltValueNullFieldError('User', 'totalPoints');
     }
   }
 
@@ -36,19 +41,22 @@ class _$User extends User {
     if (identical(other, this)) return true;
     return other is User &&
         displayName == other.displayName &&
-        photoURL == other.photoURL;
+        photoURL == other.photoURL &&
+        totalPoints == other.totalPoints;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, displayName.hashCode), photoURL.hashCode));
+    return $jf($jc($jc($jc(0, displayName.hashCode), photoURL.hashCode),
+        totalPoints.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('User')
           ..add('displayName', displayName)
-          ..add('photoURL', photoURL))
+          ..add('photoURL', photoURL)
+          ..add('totalPoints', totalPoints))
         .toString();
   }
 }
@@ -64,12 +72,17 @@ class UserBuilder implements Builder<User, UserBuilder> {
   String get photoURL => _$this._photoURL;
   set photoURL(String photoURL) => _$this._photoURL = photoURL;
 
+  int _totalPoints;
+  int get totalPoints => _$this._totalPoints;
+  set totalPoints(int totalPoints) => _$this._totalPoints = totalPoints;
+
   UserBuilder();
 
   UserBuilder get _$this {
     if (_$v != null) {
       _displayName = _$v.displayName;
       _photoURL = _$v.photoURL;
+      _totalPoints = _$v.totalPoints;
       _$v = null;
     }
     return this;
@@ -90,8 +103,11 @@ class UserBuilder implements Builder<User, UserBuilder> {
 
   @override
   _$User build() {
-    final _$result =
-        _$v ?? new _$User._(displayName: displayName, photoURL: photoURL);
+    final _$result = _$v ??
+        new _$User._(
+            displayName: displayName,
+            photoURL: photoURL,
+            totalPoints: totalPoints);
     replace(_$result);
     return _$result;
   }

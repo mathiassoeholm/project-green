@@ -8,6 +8,12 @@ abstract class User implements Built<User, UserBuilder> {
 
   String get photoURL;
 
+  int get totalPoints;
+
   User._();
-  factory User([updates(UserBuilder b)]) = _$User;
+  factory User([updates(UserBuilder b)]) =>_$User((b) => b
+    // Default values:
+    ..totalPoints = 0
+    ..update(updates)
+  );
 }

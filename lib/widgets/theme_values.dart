@@ -44,8 +44,6 @@ class ThemeValues {
   static const lightBackground = Color(0xFFF9F8FD);
 
   static const green = Color(0xFF0ECF5C);
-  static const greenDark = Color(0x66000000);
-  static const greenFaded = Colors.green;
 
 }
 

@@ -4,7 +4,7 @@ import 'package:project_green/challenges/challenge_mappings.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/localization/date_formatting.dart';
 import 'package:project_green/widgets/home/home_values.dart';
-import 'package:project_green/widgets/sorry_button.dart';
+import 'package:project_green/widgets/home/sorry_button.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
 class ChallengeCard extends StatelessWidget {

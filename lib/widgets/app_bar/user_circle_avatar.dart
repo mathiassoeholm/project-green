@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/utility/number_utility.dart';
+import 'package:project_green/widgets/app_bar/collapsed_builder.dart';
 import 'package:redux/redux.dart';
 
 class UserCircleAvatar extends StatelessWidget {
@@ -19,32 +20,28 @@ class UserCircleAvatar extends StatelessWidget {
       builder: (context, photoURL) {
         return LayoutBuilder(
           builder: (context, constraints) {
-            return StreamBuilder<double>(
+            return CollapsedBuilder(
               stream: collapseFactorStream,
-              builder: (context, snapshot) {
-                final collapseFactor = snapshot.hasData
-                    ? snapshot.data
-                    : 0.0;
-
+              builder: (context, collapseFactor) {
                 var sizeCollapseFactor = mapFromRange(collapseFactor,
-                  srcRange: [0.1, 1.0],
+                  srcRange: [0.5, 1.0],
                   destRange: [0.0, 1.0]
                 );
 
                 sizeCollapseFactor = Curves.linear.transform(sizeCollapseFactor);
 
                 var posCollapseFactor = mapFromRange(collapseFactor,
-                  srcRange: [0.4, 0.9],
+                  srcRange: [0.6, 0.9],
                   destRange: [0.0, 1.0]
                 );
 
                 posCollapseFactor = Curves.fastOutSlowIn.transform(posCollapseFactor);
 
-                final startPadding = 20.0;
+                final startPadding = 10.0;
                 final endPadding = 7.0;
                 final padding = lerpDouble(startPadding, endPadding, sizeCollapseFactor);
 
-                final size = lerpDouble(94, 40, sizeCollapseFactor);
+                final size = lerpDouble(86, 40, sizeCollapseFactor);
                 final borderSize = size*0.06;
                 final totalSize = size+borderSize*2;
                 final translation = (-constraints.maxWidth/2+totalSize/2 + endPadding) * posCollapseFactor;

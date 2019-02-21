@@ -18,6 +18,7 @@ main() {
       final user = User((b) => b
         ..displayName = 'john'
         ..photoURL = 'photo-url'
+        ..totalPoints = 1456
       );
 
       store.dispatch(SetUserAction(user));

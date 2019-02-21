@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/utility/number_utility.dart';
+import 'package:project_green/widgets/app_bar/collapsed_builder.dart';
 import 'package:redux/redux.dart';
 
 class UserDisplayName extends StatelessWidget {
@@ -18,15 +19,15 @@ class UserDisplayName extends StatelessWidget {
     return StoreConnector<AppState, String>(
       converter: (Store<AppState> store) => store.state.user?.displayName,
       builder: (context, displayName) {
-        return StreamBuilder<double>(
-          stream: collapseFactorStream,
-          builder: (context, snapshot) {
-            final collapseFactor = snapshot.hasData
-              ? snapshot.data
-              : 0.0;
+        if (displayName == null) {
+          return Container(width: 0, height: 0);
+        }
 
+        return CollapsedBuilder(
+          stream: collapseFactorStream,
+          builder: (context, collapseFactor) {
             final bottomTextInterpolation = mapFromRange(collapseFactor,
-                srcRange: [0.1, 0.3],
+                srcRange: [0.35, 0.5],
                 destRange: [0.0, 1.0]
             );
 
@@ -40,15 +41,12 @@ class UserDisplayName extends StatelessWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
-                    padding: EdgeInsets.only(top: lerpDouble(130, 100, bottomTextInterpolation)),
-                    child: Opacity(
-                      opacity: 1-bottomTextInterpolation,
-                      child: Text(displayName,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                        ),
+                    padding: EdgeInsets.only(top: lerpDouble(110, 120, bottomTextInterpolation)),
+                    child: Text(displayName,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
                       ),
                     ),
                   ),
@@ -63,7 +61,7 @@ class UserDisplayName extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
-                          fontSize: 16,
+                          fontSize: 14,
                         ),
                       ),
                     ),

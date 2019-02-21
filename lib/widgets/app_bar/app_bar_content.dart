@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_green/widgets/app_bar/user_circle_avatar.dart';
 import 'package:project_green/widgets/app_bar/user_display_name.dart';
+import 'package:project_green/widgets/app_bar/user_rank.dart';
+import 'package:project_green/widgets/app_bar/user_total_points.dart';
 
 class AppBarContent extends StatelessWidget {
   final Stream<double> collapseFactorStream;
@@ -15,6 +17,18 @@ class AppBarContent extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [
+                    Color(0xAA000000),
+                    Color(0x00000000),
+                  ]
+                ),
+              ),
+            )
+          ),
+          Positioned.fill(
             child: UserCircleAvatar(
               collapseFactorStream: collapseFactorStream,
             ),
@@ -23,6 +37,16 @@ class AppBarContent extends StatelessWidget {
             child: UserDisplayName(
               collapseFactorStream: collapseFactorStream,
             ),
+          ),
+          Positioned.fill(
+            child: UserRank(
+              collapseFactorStream: collapseFactorStream,
+            ),
+          ),
+          Positioned.fill(
+            child: UserTotalPoints(
+              collapseFactorStream: collapseFactorStream,
+            )
           ),
         ],
       ),

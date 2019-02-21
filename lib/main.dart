@@ -8,6 +8,7 @@ import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/time/time_updater.dart';
+import 'package:project_green/user/user.dart';
 import 'package:project_green/widgets/create_challenge.dart';
 import 'package:project_green/widgets/home/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -19,8 +20,11 @@ void main() {
   final random = Random();
 
   final initialState = AppState((b) => b
-    ..user.displayName = 'Mathias Søholm'
-    ..user.photoURL = 'http://new.mindfoxstudios.com/static/669027ccf7c531bdd8fb8fe9dac871ba/ba856/mathias.png'
+    ..user = User((b) => b
+      ..displayName = 'Very Long Name Indeed'
+      ..photoURL = 'http://new.mindfoxstudios.com/static/669027ccf7c531bdd8fb8fe9dac871ba/ba856/mathias.png'
+      ..totalPoints = 1337
+    ).toBuilder()
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b
         ..type = ChallengeType.beef
