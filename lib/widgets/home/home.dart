@@ -96,7 +96,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     challenges: vm.challenges,
                     today: vm.today,
                     controller: _scrollController,
-                    invisibleHeaderMaxSize: appBarMaxHeight - appBarMinHeight - safeAreaTop,
+                    invisibleHeaderMaxSize: appBarMaxHeight - appBarMinHeight,
                   )
                 ),
                 AnimatedBuilder(

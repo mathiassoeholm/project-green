@@ -27,7 +27,7 @@ class UserDisplayName extends StatelessWidget {
           stream: collapseFactorStream,
           builder: (context, collapseFactor) {
             final bottomTextInterpolation = mapFromRange(collapseFactor,
-                srcRange: [0.35, 0.5],
+                srcRange: [0.35, 0.8],
                 destRange: [0.0, 1.0]
             );
 
@@ -41,7 +41,7 @@ class UserDisplayName extends StatelessWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
-                    padding: EdgeInsets.only(top: lerpDouble(110, 120, bottomTextInterpolation)),
+                    padding: EdgeInsets.only(top: lerpDouble(110, 130, bottomTextInterpolation)),
                     child: Text(displayName,
                       style: TextStyle(
                         color: Colors.white,

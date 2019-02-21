@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget {
       animation: scrollController,
       builder: (context, child) {
         return Positioned(
-          left: 0, right: 0, top: 0, height: max(appBarMinHeight + safeAreaTop, appBarMaxHeight - scrollOffset) + pageBorderRadius,
+          left: 0, right: 0, top: 0, height: max(appBarMinHeight + safeAreaTop, appBarMaxHeight + safeAreaTop - scrollOffset) + pageBorderRadius,
           child: child,
         );
       },

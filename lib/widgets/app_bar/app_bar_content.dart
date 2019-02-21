@@ -3,6 +3,7 @@ import 'package:project_green/widgets/app_bar/user_circle_avatar.dart';
 import 'package:project_green/widgets/app_bar/user_display_name.dart';
 import 'package:project_green/widgets/app_bar/user_rank.dart';
 import 'package:project_green/widgets/app_bar/user_total_points.dart';
+import 'package:project_green/widgets/home/home_values.dart';
 
 class AppBarContent extends StatelessWidget {
   final Stream<double> collapseFactorStream;

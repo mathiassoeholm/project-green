@@ -24,14 +24,14 @@ class UserTotalPoints extends StatelessWidget {
           stream: collapseFactorStream,
           builder: (context, collapseFactor) {
             final bottomInterpolation = mapFromRange(collapseFactor,
-                srcRange: [0.0, 0.15],
+                srcRange: [0.0, 0.2],
                 destRange: [0.0, 1.0]
             );
 
             return Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: EdgeInsets.only(top: lerpDouble(155, 170, bottomInterpolation)),
+                padding: EdgeInsets.only(top: lerpDouble(155, 180, bottomInterpolation)),
                 child: Opacity(
                   opacity: 1.0,//-bottomInterpolation,
                   child: Container(
