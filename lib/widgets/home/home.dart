@@ -51,7 +51,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
     _scrollController.addListener(() {
       final collapseFactor = (_scrollController.offset/(appBarMaxHeight-appBarMinHeight)).clamp(0.0, 1.0);
-      print(collapseFactor);
       _appBarCollapseFactorController.add(collapseFactor);
     });
   }
