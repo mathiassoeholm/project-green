@@ -77,95 +77,71 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
           return true;
         }
       },
-      child: StoreConnector<AppState, _ViewModel>(
-        converter: _ViewModel.fromStore,
-        builder: (BuildContext context, _ViewModel vm) {
-          return Material(
-            child: Stack(
-              children: <Widget>[
-                CustomAppBar(
-                  collapseFactorStream: _appBarCollapseFactorController.stream.asBroadcastStream(),
-                  scrollController: _scrollController,
-                ),
-                ListBackground(
-                  scrollController: _scrollController,
-                ),
-                Positioned(
-                  left: 0, right: 0, top: appBarMinHeight + safeAreaTop, bottom: 0,
-                  child: ChallengeList(
-                    challenges: vm.challenges,
-                    today: vm.today,
-                    controller: _scrollController,
-                    invisibleHeaderMaxSize: appBarMaxHeight - appBarMinHeight,
-                  )
-                ),
-                AnimatedBuilder(
-                  animation: _createTransitionAnimation,
-                  builder: (context, child) {
-                    return Positioned.fill(
-                      child: LayoutBuilder(
-                        builder: (BuildContext context, BoxConstraints constraints) {
-                          return Transform(
-                            transform: Matrix4.translationValues(
-                              0,
-                              (1-_createTransitionAnimation.value)*constraints.maxHeight,
-                              0,
-                            ),
-                            child: child,
-                          );
-                        },
-                      )
-                    );
-                  },
-                  child: CreateChallenge(
-                    close: _createTransitionController.reverse,
-                  ),
-                ),
-                AnimatedBuilder(
-                  animation: _createTransitionAnimation,
-                  builder: (context, child) {
-                    return Positioned.fill(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Transform(
-                          transform: Matrix4.translationValues(
-                            0,
-                            (CustomTabBar.totalHeight + safeAreaBottom)*_createTransitionAnimation.value,
-                            0,
-                          ),
-                          child: child,
-                        ),
-                      ),
-                    );
-                  },
-                  child: CustomTabBar(
-                    openCreateChallenge: () {
-                      _createTransitionController.forward();
-                    },
-                  ),
-                ),
-              ],
+      child: Material(
+        child: Stack(
+          children: <Widget>[
+            CustomAppBar(
+              collapseFactorStream: _appBarCollapseFactorController.stream.asBroadcastStream(),
+              scrollController: _scrollController,
             ),
-          );
-        },
+            ListBackground(
+              scrollController: _scrollController,
+            ),
+            Positioned(
+              left: 0, right: 0, top: appBarMinHeight + safeAreaTop, bottom: 0,
+              child: ChallengeList(
+                controller: _scrollController,
+                invisibleHeaderMaxSize: appBarMaxHeight - appBarMinHeight,
+              )
+            ),
+            AnimatedBuilder(
+              animation: _createTransitionAnimation,
+              builder: (context, child) {
+                return Positioned.fill(
+                  child: LayoutBuilder(
+                    builder: (BuildContext context, BoxConstraints constraints) {
+                      return Transform(
+                        transform: Matrix4.translationValues(
+                          0,
+                          (1-_createTransitionAnimation.value)*constraints.maxHeight,
+                          0,
+                        ),
+                        child: child,
+                      );
+                    },
+                  )
+                );
+              },
+              child: CreateChallenge(
+                close: _createTransitionController.reverse,
+              ),
+            ),
+            AnimatedBuilder(
+              animation: _createTransitionAnimation,
+              builder: (context, child) {
+                return Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Transform(
+                      transform: Matrix4.translationValues(
+                        0,
+                        (CustomTabBar.totalHeight + safeAreaBottom)*_createTransitionAnimation.value,
+                        0,
+                      ),
+                      child: child,
+                    ),
+                  ),
+                );
+              },
+              child: CustomTabBar(
+                openCreateChallenge: () {
+                  _createTransitionController.forward();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
-    );
-  }
-}
-
-class _ViewModel {
-  final BuiltList<Challenge> challenges;
-  final DateTime today;
-
-  _ViewModel({
-    @required this.challenges,
-    @required this.today,
-  });
-
-  static _ViewModel fromStore(Store<AppState> store) {
-    return _ViewModel(
-        challenges: store.state.challenges,
-      today: store.state.time.today,
     );
   }
 }

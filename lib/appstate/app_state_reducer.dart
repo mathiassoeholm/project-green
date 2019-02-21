@@ -5,8 +5,8 @@ import 'package:project_green/user/user_reducer.dart';
 
 AppState appStateReducer(AppState state, action) {
   return AppState((b) => b
-    ..challenges = challengesReducer(state.challenges, action).toBuilder()
-    ..time = timeReducer(state.time, action).toBuilder()
-    ..user = userReducer(state.user, action).toBuilder()
+    ..challenges = challengesReducer(state.challenges, action)?.toBuilder()
+    ..time = timeReducer(state.time, action)?.toBuilder()
+    ..user = userReducer(state.user, action)?.toBuilder()
   );
 }

@@ -43,7 +43,55 @@ void main() {
         ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
-        ..type = ChallengeType.beef
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
+        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+      ),
+      Challenge((b) => b
+        ..type = ChallengeType.flying
         ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
       ),
     ]).toBuilder(),

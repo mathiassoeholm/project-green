@@ -8,6 +8,8 @@ part of 'challenge.dart';
 
 class _$Challenge extends Challenge {
   @override
+  final String key;
+  @override
   final ChallengeType type;
   @override
   final DateTime start;
@@ -15,7 +17,10 @@ class _$Challenge extends Challenge {
   factory _$Challenge([void updates(ChallengeBuilder b)]) =>
       (new ChallengeBuilder()..update(updates)).build();
 
-  _$Challenge._({this.type, this.start}) : super._() {
+  _$Challenge._({this.key, this.type, this.start}) : super._() {
+    if (key == null) {
+      throw new BuiltValueNullFieldError('Challenge', 'key');
+    }
     if (type == null) {
       throw new BuiltValueNullFieldError('Challenge', 'type');
     }
@@ -34,17 +39,21 @@ class _$Challenge extends Challenge {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Challenge && type == other.type && start == other.start;
+    return other is Challenge &&
+        key == other.key &&
+        type == other.type &&
+        start == other.start;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, type.hashCode), start.hashCode));
+    return $jf($jc($jc($jc(0, key.hashCode), type.hashCode), start.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Challenge')
+          ..add('key', key)
           ..add('type', type)
           ..add('start', start))
         .toString();
@@ -53,6 +62,10 @@ class _$Challenge extends Challenge {
 
 class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
   _$Challenge _$v;
+
+  String _key;
+  String get key => _$this._key;
+  set key(String key) => _$this._key = key;
 
   ChallengeType _type;
   ChallengeType get type => _$this._type;
@@ -66,6 +79,7 @@ class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
 
   ChallengeBuilder get _$this {
     if (_$v != null) {
+      _key = _$v.key;
       _type = _$v.type;
       _start = _$v.start;
       _$v = null;
@@ -88,7 +102,8 @@ class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
 
   @override
   _$Challenge build() {
-    final _$result = _$v ?? new _$Challenge._(type: type, start: start);
+    final _$result =
+        _$v ?? new _$Challenge._(key: key, type: type, start: start);
     replace(_$result);
     return _$result;
   }

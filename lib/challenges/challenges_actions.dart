@@ -5,3 +5,9 @@ class AddChallengeAction {
 
   AddChallengeAction(this.newChallenge);
 }
+
+class RemoveChallengeAction {
+  final Challenge challenge;
+
+  RemoveChallengeAction(this.challenge);
+}
