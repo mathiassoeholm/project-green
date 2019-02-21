@@ -24,14 +24,14 @@ class UserCircleAvatar extends StatelessWidget {
               stream: collapseFactorStream,
               builder: (context, collapseFactor) {
                 var sizeCollapseFactor = mapFromRange(collapseFactor,
-                  srcRange: [0.5, 1.0],
+                  srcRange: [0.5, 0.9],
                   destRange: [0.0, 1.0]
                 );
 
                 sizeCollapseFactor = Curves.linear.transform(sizeCollapseFactor);
 
                 var posCollapseFactor = mapFromRange(collapseFactor,
-                  srcRange: [0.5, 0.9],
+                  srcRange: [0.4, 0.9],
                   destRange: [0.0, 1.0]
                 );
 
