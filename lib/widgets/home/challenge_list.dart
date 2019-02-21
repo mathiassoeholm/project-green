@@ -54,7 +54,6 @@ class ChallengeList extends StatelessWidget {
 
                 return Container(
                   height: remainingSpace,
-                  color: Colors.red,
                 );
               }()
             ),

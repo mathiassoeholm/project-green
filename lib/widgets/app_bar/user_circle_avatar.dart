@@ -31,7 +31,7 @@ class UserCircleAvatar extends StatelessWidget {
                 sizeCollapseFactor = Curves.linear.transform(sizeCollapseFactor);
 
                 var posCollapseFactor = mapFromRange(collapseFactor,
-                  srcRange: [0.6, 0.9],
+                  srcRange: [0.5, 0.9],
                   destRange: [0.0, 1.0]
                 );
 

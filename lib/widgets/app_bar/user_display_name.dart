@@ -27,12 +27,12 @@ class UserDisplayName extends StatelessWidget {
           stream: collapseFactorStream,
           builder: (context, collapseFactor) {
             final bottomTextInterpolation = mapFromRange(collapseFactor,
-                srcRange: [0.35, 0.8],
+                srcRange: [0.35, 0.85],
                 destRange: [0.0, 1.0]
             );
 
             final topTextInterpolation = mapFromRange(collapseFactor,
-                srcRange: [0.85, 1.0],
+                srcRange: [0.8, 1.0],
                 destRange: [0.0, 1.0]
             );
 
