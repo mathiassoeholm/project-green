@@ -1,0 +1,139 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+fastlane_require 'yaml'
+
+xcversion(version: "10.1")
+
+# Avoid timeout problem
+ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "6"
+ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "5"
+
+# Instance variables, so they can be accesed from methods
+@xcode_project_path = ENV["XCODE_PROJECT_PATH"]
+@bundle_identifier = ENV["BUNDLE_IDENTIFIER"]
+
+appcenter_api_token = ENV["APPCENTER_API_TOKEN"]
+appcenter_ios_app_slug = ENV["APPCENTER_IOS_APP_SLUG"]
+appcenter_android_app_slug = ENV["APPCENTER_ANDROID_APP_SLUG"]
+app_file = ENV["APP_FILE"]
+symbol_file = ENV["SYMBOL_FILE"]
+google_services_plist_file = ENV["GOOGLE_SERVICES_PLIST_FILE"]
+pods_dir = ENV["PODS_DIR"]
+
+desc "Archives iOS project with export method: ad-hoc"
+lane :adhoc_ios do
+  register_devices(devices_file: "./ios-devices.txt")
+  archive_ios('ad-hoc', 'adhoc')
+end
+
+desc "Archives iOS project with export method: app-store"
+lane :appstore_ios do
+  archive_ios('app-store', 'appstore')
+end
+
+def archive_ios(gym_export_type, match_export_type)
+  output_path = ENV["XCODE_OUTPUT_PATH"]
+  build_name = ENV["BUILD_NAME"]
+
+  match(
+    type: match_export_type,
+    force_for_new_devices: true,
+  )
+
+  cocoapods(
+    podfile: "./ios/Podfile"
+  )
+
+  settings_to_override = {
+    :BUNDLE_IDENTIFIER => @bundle_identifier,
+    :PROVISIONING_PROFILE_SPECIFIER => ENV["sigh_#{@bundle_identifier}_#{match_export_type}_profile-name"],
+    :DEVELOPMENT_TEAM => ENV["sigh_#{@bundle_identifier}_#{match_export_type}_team-id"],
+  }
+
+  gym(
+    workspace: "./ios/Runner.xcworkspace",
+    scheme: "Runner",
+    export_method: gym_export_type,
+    output_directory: output_path,
+    output_name: build_name,
+    build_path: output_path,
+    xcargs: settings_to_override,
+    codesigning_identity: "iPhone Distribution: Mindfox Studios IVS",
+  )
+end
+
+lane :assemble_release_android do
+  android_project_dir = ENV["ANDROID_PROJECT_DIR"]
+  android_keystore_location = ENV["ANDROID_KEYSTORE_LOCATION"]
+  android_keystore_password = ENV["ANDROID_KEYSTORE_PASSWORD"]
+  android_keystore_alias = ENV["ANDROID_KEYSTORE_ALIAS"]
+  android_keystore_alias_password = ENV["ANDROID_KEYSTORE_ALIAS_PASSWORD"]
+
+  # We are in Fastlane directory, so go out a single one
+  full_keystore_path = "#{Pathname(Dir.pwd).parent.to_s}/#{android_keystore_location}"
+
+  gradle(
+    project_dir: android_project_dir,
+    task: "assemble",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => full_keystore_path,
+      "android.injected.signing.store.password" => android_keystore_password,
+      "android.injected.signing.key.alias" => android_keystore_alias,
+      "android.injected.signing.key.password" => android_keystore_alias_password,
+    }
+  )
+end
+
+commit_sha_identifier = ENV["CI_COMMIT_SHA"].chars.first(6).join
+
+desc "Uploads an Android build to Appcenter"
+lane :upload_appcenter_android do
+  appcenter_upload(
+    api_token: appcenter_api_token,
+    owner_name: "Mindfox-Studios",
+    app_name: appcenter_android_app_slug,
+    apk: app_file,
+    group: "Internal",
+    release_notes: "#{commit_sha_identifier} #{ENV["CI_COMMIT_MESSAGE"]}",
+  )
+end
+
+desc "Uploads dSYM to crashlytics"
+lane :upload_dsym_crashlytics do
+  # Step out of fastlane dir
+  Dir.chdir("..") do
+    sh("#{pods_dir}/Fabric/upload-symbols -gsp #{google_services_plist_file} -p ios #{symbol_file}")
+  end
+end
+
+desc "Uploads an iOS build to Appcenter"
+lane :upload_appcenter_ios do
+  appcenter_upload(
+    api_token: appcenter_api_token,
+    owner_name: "Mindfox-Studios",
+    app_name: appcenter_ios_app_slug,
+    ipa: app_file,
+    dsym: symbol_file,
+    group: "Internal",
+    release_notes: "#{commit_sha_identifier} #{ENV["CI_COMMIT_MESSAGE"]}",
+  )
+end
+
+desc "Uploads a build to TestFlight, but doesn't submit it"
+lane :upload_testflight do
+  pilot(
+    ipa: app_file,
+    skip_submission: true,
+  )
+end

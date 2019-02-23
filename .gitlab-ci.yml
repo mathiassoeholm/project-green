@@ -1,0 +1,90 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  BUILD_NAME: ProjectGreen
+  BUNDLE_IDENTIFIER: mindfox.mathias.projectgreen
+  ANDROID_PROJECT_DIR: ./android
+  XCODE_OUTPUT_PATH: ./ios/builds/output
+  APPCENTER_IOS_APP_SLUG: Project-Green-iOS
+  APPCENTER_ANDROID_APP_SLUG: Project-Green-Android
+  ANDROID_KEYSTORE_LOCATION: android/keystores/keystore.jks
+  ANDROID_KEYSTORE_ALIAS: key
+
+.only-release: &only-release
+  only:
+    refs:
+      - release
+
+.except-release: &except-release
+  except:
+    refs:
+      - release
+
+before_script:
+  - xcversion select 10.1
+  - echo n | rbenv install 2.5.3 || true # Ignore errors, since install fails if already installed
+  - rbenv shell 2.5.3
+  - bundle install
+  - git lfs pull
+  - flutter packages get
+
+# ------------- Stage: build --------------- #
+android-build:
+  stage: build
+  script:
+    bundle exec fastlane assemble_release_android
+  artifacts:
+    paths:
+      - ./android/app/build/outputs/apk/release/app-release.apk
+
+.ios-build-job: &ios-build-job
+  stage: build
+  artifacts:
+    paths:
+      - $XCODE_OUTPUT_PATH/$BUILD_NAME.ipa
+      - $XCODE_OUTPUT_PATH/$BUILD_NAME.app.dSYM.zip
+  variables:
+    SYMBOL_FILE: $XCODE_OUTPUT_PATH/$BUILD_NAME.app.dSYM.zip
+  tags:
+    - osx
+
+ios-build-adhoc:
+  <<: *except-release
+  <<: *ios-build-job
+  script:
+    - bundle exec fastlane adhoc_ios
+    #- bundle exec fastlane upload_dsym_crashlytics
+
+ios-build-release:
+  <<: *only-release
+  <<: *ios-build-job
+  script:
+    - bundle exec fastlane appstore_ios
+    #- bundle exec fastlane upload_dsym_crashlytics
+
+# ------------- Stage: deploy --------------- #
+android-deploy-appcenter:
+  stage: deploy
+  script:
+    - bundle exec fastlane upload_appcenter_android
+  variables:
+    APP_FILE: ./android/app/build/outputs/apk/release/app-release.apk
+
+ios-deploy-appcenter:
+  <<: *except-release
+  stage: deploy
+  script:
+    - bundle exec fastlane upload_appcenter_ios
+  variables:
+    APP_FILE: $XCODE_OUTPUT_PATH/$BUILD_NAME.ipa
+    SYMBOL_FILE: $XCODE_OUTPUT_PATH/$BUILD_NAME.app.dSYM.zip
+
+ios-deploy-testflight:
+  <<: *only-release
+  stage: deploy
+  script:
+    - bundle exec fastlane upload_testflight
+  variables:
+    APP_FILE: $XCODE_OUTPUT_PATH/$BUILD_NAME.ipa

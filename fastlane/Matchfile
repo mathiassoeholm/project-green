@@ -1,0 +1,9 @@
+git_url("git@gitlab.com:mindfoxstudios/ios-certificates.git")
+
+app_identifier(ENV["BUNDLE_IDENTIFIER"])
+username("dev@mindfoxstudios.com") # Your Apple Developer Portal username
+
+team_name("Mindfox Studios IVS")
+
+# For all available options run `fastlane match --help`
+# Remove the # in the beginning of the line to enable the other options

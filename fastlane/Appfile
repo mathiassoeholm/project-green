@@ -1,0 +1,7 @@
+app_identifier ENV["BUNDLE_IDENTIFIER"] # The bundle identifier of your app
+apple_id "dev@mindfoxstudios.com" # Your Apple email address
+team_name "Mindfox Studios IVS"
+itc_team_name "Mindfox Studios IVS"
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
