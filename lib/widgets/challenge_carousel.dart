@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -9,12 +10,13 @@ import 'package:project_green/widgets/theme_values.dart';
 class ChallengeCarousel extends StatefulWidget {
   // Start with a big number such the it allows scrolling left
   static const firstPageIndex = 1000;
-  static const containerSize = 270.0;
 
   final Function(ChallengeType) onSelectType;
+  final double containerSize;
 
   const ChallengeCarousel({
     @required this.onSelectType,
+    @required this.containerSize,
   });
 
   @override
@@ -46,7 +48,7 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
     controller = PageController(
       initialPage: currentPage,
       keepPage: false,
-      viewportFraction: (ChallengeCarousel.containerSize)/screenWidth,
+      viewportFraction: (widget.containerSize)/screenWidth,
     );
   }
 
@@ -98,43 +100,50 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
         padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
         child: AspectRatio(
           aspectRatio: 1,
-          child: Stack(
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  boxShadow: ThemeValues.carouselDropShadow,
-                  borderRadius: BorderRadius.circular(22),
-                ),
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(22),
-                child: Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.translationValues(imageParallax*20, 0, 0)*Matrix4.diagonal3Values(1.2, 1.2, 1),
-                  child: Center(
-                    child: Image.asset(ChallengeMappings.coverPath(type))
-                  )
-                ),
-              ),
-              Positioned(
-                left: 0, bottom: 0, right: 0, height: 58,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(22), bottomRight: Radius.circular(22))
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(AppLocalizations.of(context).getMediumChallengeTitle(type),
-                      style: Theme.of(context).textTheme.button.merge(TextStyle(
-                        color: Color(0xFF4C4A4A),
-                      )),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final whiteAreaHeight = min(58.0, constraints.maxHeight*0.4);
+
+              return Stack(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      boxShadow: ThemeValues.carouselDropShadow,
+                      borderRadius: BorderRadius.circular(22),
                     ),
                   ),
-                ),
-              ),
-            ],
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(22),
+                    child: Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.translationValues(imageParallax*20, 0, 0)*Matrix4.diagonal3Values(1.2, 1.2, 1),
+                      child: Center(
+                        child: Image.asset(ChallengeMappings.coverPath(type))
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 0, bottom: 0, right: 0, height: whiteAreaHeight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(22), bottomRight: Radius.circular(22))
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(AppLocalizations.of(context).getMediumChallengeTitle(type),
+                          style: Theme.of(context).textTheme.button.merge(TextStyle(
+                            color: Color(0xFF4C4A4A),
+                            fontSize: 0.3*whiteAreaHeight,
+                          )),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }
           ),
         ),
       ),

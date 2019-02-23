@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
@@ -24,6 +26,10 @@ class CreateChallengeState extends State<CreateChallenge> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    final containerSize = min(screenHeight*0.4, 270.0);
+
     return Material(
       color: ThemeValues.lightBackground,
       child: Column(
@@ -32,8 +38,9 @@ class CreateChallengeState extends State<CreateChallenge> {
         children: <Widget>[
           StatusBarGradient(),
           Container(
-            height: ChallengeCarousel.containerSize,
+            height: containerSize,
             child: ChallengeCarousel(
+              containerSize: containerSize,
               onSelectType: (type) {
                 setState(() {
                   selectedChallenge = type;
@@ -47,7 +54,6 @@ class CreateChallengeState extends State<CreateChallenge> {
               child: Center(
                 child: Text(AppLocalizations.of(context).getDescription(selectedChallenge),
                   style: Theme.of(context).textTheme.body1,
-
                 ),
               ),
             ),
