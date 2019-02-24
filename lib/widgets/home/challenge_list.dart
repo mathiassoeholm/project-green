@@ -6,14 +6,14 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/challenges/challenges_actions.dart';
-import 'package:project_green/widgets/home/challenge_card.dart';
-import 'package:project_green/widgets/custom_tab_bar.dart';
 import 'package:project_green/widgets/app_bar/invisible_persistent_header_delegate.dart';
+import 'package:project_green/widgets/challenge_card/challenge_card.dart';
+import 'package:project_green/widgets/custom_tab_bar.dart';
 import 'package:project_green/widgets/home/home_values.dart';
 import 'package:project_green/widgets/home/thats_okay_modal.dart';
 import 'package:redux/redux.dart';
 
-class ChallengeList extends StatelessWidget {
+class ChallengeList extends StatefulWidget {
   final ScrollController controller;
   final double invisibleHeaderMaxSize;
 
@@ -21,6 +21,15 @@ class ChallengeList extends StatelessWidget {
     @required this.controller,
     @required this.invisibleHeaderMaxSize,
   });
+
+  @override
+  ChallengeListState createState() {
+    return new ChallengeListState();
+  }
+}
+
+class ChallengeListState extends State<ChallengeList> {
+  bool isInDeleteMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +42,7 @@ class ChallengeList extends StatelessWidget {
           builder: (context, constraints) {
             return CustomScrollView(
               physics: BouncingScrollPhysics(),
-              controller: controller,
+              controller: widget.controller,
               slivers: <Widget>[
                 SliverPersistentHeader(
                   pinned: true,
@@ -41,7 +50,7 @@ class ChallengeList extends StatelessWidget {
                   /// This also enables the list to move upwards until it is appBarMinHeight away from the top.
                   delegate: InvisiblePersistentHeaderDelegate(
                     minSize: 0,
-                    maxSize: invisibleHeaderMaxSize,
+                    maxSize: widget.invisibleHeaderMaxSize,
                   ),
                 ),
                 SliverList(
@@ -76,26 +85,36 @@ class ChallengeList extends StatelessWidget {
 
   IndexedWidgetBuilder _createSliverListDelegate(_ViewModel vm) {
     return (context, index) {
-      return Padding(
-        padding: EdgeInsets.fromLTRB(cardPadding, cardPadding, cardPadding, 0),
-        child: ChallengeCard(vm.challenges[index],
-          today: vm.today,
-          onTapSorry: () {
-            showGeneralDialog(
-              barrierDismissible: false,
-              transitionDuration: Duration(milliseconds: 450),
-              // Transition is handled in modal itself, so simply return child
-              transitionBuilder: (_, __, ___, child) => child,
-              context: context,
-              pageBuilder: (context, animation, secondaryAnimation) {
-                return ThatsOkayModal(
-                  challenge: vm.challenges[index],
-                  openAnimation: animation,
-                );
-              },
-            );
-          },
-        ),
+      return Stack(
+        children: <Widget>[
+          ChallengeCard(vm.challenges[index],
+            isInDeleteMode: isInDeleteMode,
+            today: vm.today,
+            onLongPress: () {
+              setState(() {
+                isInDeleteMode = true;
+              });
+            },
+            onDeleted: () {
+              vm.removeChallenge(vm.challenges[index]);
+            },
+            onTapSorry: () {
+              showGeneralDialog(
+                barrierDismissible: false,
+                transitionDuration: Duration(milliseconds: 450),
+                // Transition is handled in modal itself, so simply return child
+                transitionBuilder: (_, __, ___, child) => child,
+                context: context,
+                pageBuilder: (context, animation, secondaryAnimation) {
+                  return ThatsOkayModal(
+                    challenge: vm.challenges[index],
+                    openAnimation: animation,
+                  );
+                },
+              );
+            },
+          ),
+        ],
       );
     };
   }
