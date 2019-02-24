@@ -163,10 +163,7 @@ class _ChallengeCardState extends State<ChallengeCard> with SingleTickerProvider
                     icon: const Icon(Icons.cancel,
                       size: 27,
                     ),
-                    onPressed: () {
-                      print("Pressing ${resizeController.status}");
-                      resizeController.forward();
-                    },
+                    onPressed: resizeController.forward,
                   ),
               ),
             ),

@@ -40,42 +40,51 @@ class ChallengeListState extends State<ChallengeList> {
       builder: (context, vm) {
         return LayoutBuilder(
           builder: (context, constraints) {
-            return CustomScrollView(
-              physics: BouncingScrollPhysics(),
-              controller: widget.controller,
-              slivers: <Widget>[
-                SliverPersistentHeader(
-                  pinned: true,
-                  /// We use the invisible persistent header to push the list below our custom app bar.
-                  /// This also enables the list to move upwards until it is appBarMinHeight away from the top.
-                  delegate: InvisiblePersistentHeaderDelegate(
-                    minSize: 0,
-                    maxSize: widget.invisibleHeaderMaxSize,
+            return GestureDetector(
+              onTap: () {
+                if (isInDeleteMode) {
+                  setState(() {
+                    isInDeleteMode = false;
+                  });
+                }
+              },
+              child: CustomScrollView(
+                physics: BouncingScrollPhysics(),
+                controller: widget.controller,
+                slivers: <Widget>[
+                  SliverPersistentHeader(
+                    pinned: true,
+                    /// We use the invisible persistent header to push the list below our custom app bar.
+                    /// This also enables the list to move upwards until it is appBarMinHeight away from the top.
+                    delegate: InvisiblePersistentHeaderDelegate(
+                      minSize: 0,
+                      maxSize: widget.invisibleHeaderMaxSize,
+                    ),
                   ),
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    _createSliverListDelegate(vm),
-                    childCount: vm.challenges.length,
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      _createSliverListDelegate(vm),
+                      childCount: vm.challenges.length,
+                    ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                    child: () {
-                      final listHeight = (cardHeight+cardPadding)*vm.challenges.length + CustomTabBar.totalHeight + safeAreaBottom;
-                      final remainingSpace = max(0.0, constraints.maxHeight-listHeight);
+                  SliverToBoxAdapter(
+                      child: () {
+                        final listHeight = (cardHeight+cardPadding)*vm.challenges.length + CustomTabBar.totalHeight + safeAreaBottom;
+                        final remainingSpace = max(0.0, constraints.maxHeight-listHeight);
 
-                      return Container(
-                        height: remainingSpace,
-                      );
-                    }()
-                ),
-                /// Bottom list padding
-                SliverToBoxAdapter(
-                  child: Container(
-                    height: CustomTabBar.totalHeight + safeAreaBottom,
+                        return Container(
+                          height: remainingSpace,
+                        );
+                      }()
                   ),
-                ),
-              ],
+                  /// Bottom list padding
+                  SliverToBoxAdapter(
+                    child: Container(
+                      height: CustomTabBar.totalHeight + safeAreaBottom,
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         );
