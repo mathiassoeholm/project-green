@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
@@ -50,9 +51,9 @@ class CreateChallengeState extends State<CreateChallenge> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 5),
               child: Center(
-                child: Text(AppLocalizations.of(context).getDescription(selectedChallenge),
+                child: AutoSizeText(AppLocalizations.of(context).getDescription(selectedChallenge),
                   style: Theme.of(context).textTheme.body1,
                 ),
               ),
