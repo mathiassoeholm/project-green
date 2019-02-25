@@ -13,11 +13,13 @@ class _$Challenge extends Challenge {
   final ChallengeType type;
   @override
   final DateTime start;
+  @override
+  final BuiltList<DateTime> relapses;
 
   factory _$Challenge([void updates(ChallengeBuilder b)]) =>
       (new ChallengeBuilder()..update(updates)).build();
 
-  _$Challenge._({this.key, this.type, this.start}) : super._() {
+  _$Challenge._({this.key, this.type, this.start, this.relapses}) : super._() {
     if (key == null) {
       throw new BuiltValueNullFieldError('Challenge', 'key');
     }
@@ -26,6 +28,9 @@ class _$Challenge extends Challenge {
     }
     if (start == null) {
       throw new BuiltValueNullFieldError('Challenge', 'start');
+    }
+    if (relapses == null) {
+      throw new BuiltValueNullFieldError('Challenge', 'relapses');
     }
   }
 
@@ -42,12 +47,15 @@ class _$Challenge extends Challenge {
     return other is Challenge &&
         key == other.key &&
         type == other.type &&
-        start == other.start;
+        start == other.start &&
+        relapses == other.relapses;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, key.hashCode), type.hashCode), start.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, key.hashCode), type.hashCode), start.hashCode),
+        relapses.hashCode));
   }
 
   @override
@@ -55,7 +63,8 @@ class _$Challenge extends Challenge {
     return (newBuiltValueToStringHelper('Challenge')
           ..add('key', key)
           ..add('type', type)
-          ..add('start', start))
+          ..add('start', start)
+          ..add('relapses', relapses))
         .toString();
   }
 }
@@ -75,6 +84,11 @@ class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
   DateTime get start => _$this._start;
   set start(DateTime start) => _$this._start = start;
 
+  ListBuilder<DateTime> _relapses;
+  ListBuilder<DateTime> get relapses =>
+      _$this._relapses ??= new ListBuilder<DateTime>();
+  set relapses(ListBuilder<DateTime> relapses) => _$this._relapses = relapses;
+
   ChallengeBuilder();
 
   ChallengeBuilder get _$this {
@@ -82,6 +96,7 @@ class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
       _key = _$v.key;
       _type = _$v.type;
       _start = _$v.start;
+      _relapses = _$v.relapses?.toBuilder();
       _$v = null;
     }
     return this;
@@ -102,8 +117,22 @@ class ChallengeBuilder implements Builder<Challenge, ChallengeBuilder> {
 
   @override
   _$Challenge build() {
-    final _$result =
-        _$v ?? new _$Challenge._(key: key, type: type, start: start);
+    _$Challenge _$result;
+    try {
+      _$result = _$v ??
+          new _$Challenge._(
+              key: key, type: type, start: start, relapses: relapses.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'relapses';
+        relapses.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Challenge', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

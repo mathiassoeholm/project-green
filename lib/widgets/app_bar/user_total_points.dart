@@ -5,6 +5,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/utility/number_utility.dart';
 import 'package:project_green/widgets/app_bar/collapsed_builder.dart';
+import 'package:project_green/widgets/points_display.dart';
 import 'package:project_green/widgets/theme_values.dart';
 import 'package:redux/redux.dart';
 
@@ -41,7 +42,9 @@ class UserTotalPoints extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding: EdgeInsets.only(top: lerpDouble(155, 180, bottomInterpolation)),
-                    child: _buildTotalPoints(totalPoints),
+                    child: PointsDisplay(
+                      totalPoints: totalPoints,
+                    ),
                   ),
                 ),
                 Transform(
@@ -52,7 +55,9 @@ class UserTotalPoints extends StatelessWidget {
                       padding: EdgeInsets.only(top: 15, right: 7),
                       child: Opacity(
                         opacity: topInterpolation,
-                        child: _buildTotalPoints(totalPoints)
+                        child: PointsDisplay(
+                          totalPoints: totalPoints,
+                        ),
                       ),
                     ),
                   ),
@@ -62,39 +67,6 @@ class UserTotalPoints extends StatelessWidget {
           },
         );
       },
-    );
-  }
-
-  Widget _buildTotalPoints(int totalPoints) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(100),
-        boxShadow: ThemeValues.buttonDropShadow,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Icon(Icons.filter_vintage,
-              color: ThemeValues.green,
-              size: 16,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 4.0),
-              child: Text(totalPoints.toString(),
-                style: TextStyle(
-                    color: ThemeValues.green,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13,
-                    fontFamily: 'Roboto'
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
     );
   }
 }

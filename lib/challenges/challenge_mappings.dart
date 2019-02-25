@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:project_green/challenges/challenge.dart';
 import 'package:project_green/challenges/challenge_type.dart';
 
 class ChallengeMappings {
@@ -16,5 +19,15 @@ class ChallengeMappings {
     }
 
     throw Exception("Did not implement image name for type: $type");
+  }
+
+  static int getDailyPoints(Challenge challenge, {
+    DateTime currentDate
+  }) {
+    final latestRestart = challenge.relapses.isNotEmpty
+      ? challenge.relapses.last
+      : challenge.start;
+
+    return (currentDate.difference(latestRestart).inDays + 1).clamp(1, 20);
   }
 }

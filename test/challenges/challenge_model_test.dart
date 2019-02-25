@@ -4,7 +4,6 @@ import 'package:project_green/challenges/challenge_type.dart';
 main() {
   group('Challenge Model', () {
     test('should generate different keys', () {
-
       final challenge1 = Challenge((b) => b
         ..type = ChallengeType.beef
         ..start = DateTime(2018, 12, 24)

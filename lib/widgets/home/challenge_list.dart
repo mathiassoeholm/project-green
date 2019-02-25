@@ -41,7 +41,7 @@ class ChallengeListState extends State<ChallengeList> {
         return LayoutBuilder(
           builder: (context, constraints) {
             return GestureDetector(
-              onTap: () {
+              onTapDown: (details) {
                 if (isInDeleteMode) {
                   setState(() {
                     isInDeleteMode = false;
@@ -69,7 +69,7 @@ class ChallengeListState extends State<ChallengeList> {
                   ),
                   SliverToBoxAdapter(
                       child: () {
-                        final listHeight = (cardHeight+cardPadding)*vm.challenges.length + CustomTabBar.totalHeight + safeAreaBottom;
+                        final listHeight = (cardHeight+2*verticalCardPadding)*vm.challenges.length + CustomTabBar.totalHeight + safeAreaBottom;
                         final remainingSpace = max(0.0, constraints.maxHeight-listHeight);
 
                         return Container(

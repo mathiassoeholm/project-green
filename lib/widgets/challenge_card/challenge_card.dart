@@ -5,6 +5,7 @@ import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/localization/date_formatting.dart';
 import 'package:project_green/widgets/home/home_values.dart';
 import 'package:project_green/widgets/challenge_card/sorry_button.dart';
+import 'package:project_green/widgets/points_display.dart';
 import 'package:project_green/widgets/theme_values.dart';
 import 'package:project_green/widgets/widget_lib/conditional.dart';
 
@@ -69,7 +70,7 @@ class _ChallengeCardState extends State<ChallengeCard> with SingleTickerProvider
       builder: (context, child) {
         if (resizeController.status == AnimationStatus.forward) {
           return Container(
-            height: (cardHeight+cardPadding)*resizeAnimation.value,
+            height: (cardHeight+2*verticalCardPadding)*resizeAnimation.value,
             width: double.infinity,
           );
         } else {
@@ -79,7 +80,7 @@ class _ChallengeCardState extends State<ChallengeCard> with SingleTickerProvider
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(cardPadding, cardPadding, cardPadding, 0),
+            padding: const EdgeInsets.fromLTRB(horizontalCardPadding, verticalCardPadding, horizontalCardPadding, verticalCardPadding),
             child: GestureDetector(
               onLongPress: widget.onLongPress,
               child: Container(
@@ -153,6 +154,17 @@ class _ChallengeCardState extends State<ChallengeCard> with SingleTickerProvider
                 ),
               ),
             ),
+          ),
+          Positioned(
+            left: horizontalCardPadding + 8, right: 0, top: 0, bottom: 0,
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: PointsDisplay(
+                totalPoints: ChallengeMappings.getDailyPoints(widget.challenge,
+                  currentDate: widget.today,
+                ),
+              ),
+            )
           ),
           Conditional(
             predicate: () => widget.isInDeleteMode,

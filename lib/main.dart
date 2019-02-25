@@ -9,7 +9,6 @@ import 'package:project_green/challenges/challenge_type.dart';
 import 'package:project_green/localization/app_localizations.dart';
 import 'package:project_green/time/time_updater.dart';
 import 'package:project_green/user/user.dart';
-import 'package:project_green/widgets/create_challenge.dart';
 import 'package:project_green/widgets/home/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -28,23 +27,23 @@ void main() {
     ..challenges = BuiltList<Challenge>([
       Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2018, 2, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2019, 2, 20)
       ),
       Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2018, 2, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
         ..type = ChallengeType.beef
-        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2018, 3, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
         ..type = ChallengeType.flying
-        ..start = DateTime(2018, random.nextInt(12) + 1, random.nextInt(28) + 1)
+        ..start = DateTime(2018, 2, random.nextInt(28) + 1)
       ),
       Challenge((b) => b
         ..type = ChallengeType.flying
