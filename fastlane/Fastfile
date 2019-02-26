@@ -47,7 +47,7 @@ def archive_ios(gym_export_type, match_export_type)
     type: match_export_type,
     force_for_new_devices: true,
   )
-
+  
   settings_to_override = {
     :BUNDLE_IDENTIFIER => @bundle_identifier,
     :PROVISIONING_PROFILE_SPECIFIER => ENV["sigh_#{@bundle_identifier}_#{match_export_type}_profile-name"],
@@ -67,6 +67,12 @@ def archive_ios(gym_export_type, match_export_type)
 end
 
 lane :assemble_release_android do
+  # Step out of fastlane dir
+  Dir.chdir("..") do
+    sh("flutter build apk --release")
+  end
+
+  =begin
   android_project_dir = ENV["ANDROID_PROJECT_DIR"]
   android_keystore_location = ENV["ANDROID_KEYSTORE_LOCATION"]
   android_keystore_password = ENV["ANDROID_KEYSTORE_PASSWORD"]
@@ -88,6 +94,7 @@ lane :assemble_release_android do
       "android.injected.signing.key.password" => android_keystore_alias_password,
     }
   )
+  =end
 end
 
 commit_sha_identifier = ENV["CI_COMMIT_SHA"].chars.first(6).join
