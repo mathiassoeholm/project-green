@@ -82,7 +82,7 @@ lane :assemble_release_android do
     project_dir: android_project_dir,
     task: "assemble",
     build_type: "Release",
-    gradle: "../android/gradle/wrapper"
+    gradle: "../android/gradle/wrapper",
     properties: {
       "android.injected.signing.store.file" => full_keystore_path,
       "android.injected.signing.store.password" => android_keystore_password,
