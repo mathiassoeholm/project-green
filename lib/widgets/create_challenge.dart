@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:project_green/challenges/challenge_type.dart';
@@ -27,10 +25,6 @@ class CreateChallengeState extends State<CreateChallenge> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-
-    final containerSize = min(screenHeight*0.4, 270.0);
-
     return Material(
       color: ThemeValues.lightBackground,
       child: Column(
@@ -38,16 +32,12 @@ class CreateChallengeState extends State<CreateChallenge> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           StatusBarGradient(),
-          Container(
-            height: containerSize,
-            child: ChallengeCarousel(
-              containerSize: containerSize,
-              onSelectType: (type) {
-                setState(() {
-                  selectedChallenge = type;
-                });
-              },
-            )
+          ChallengeCarousel(
+            onSelectType: (type) {
+              setState(() {
+                selectedChallenge = type;
+              });
+            },
           ),
           Expanded(
             child: Padding(

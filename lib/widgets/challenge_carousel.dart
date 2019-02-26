@@ -12,11 +12,9 @@ class ChallengeCarousel extends StatefulWidget {
   static const firstPageIndex = 1000;
 
   final Function(ChallengeType) onSelectType;
-  final double containerSize;
 
   const ChallengeCarousel({
     @required this.onSelectType,
-    @required this.containerSize,
   });
 
   @override
@@ -32,11 +30,14 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
   ChallengeType get selectedChallenge =>
     allChallengeTypes[currentPage%allChallengeTypes.length];
 
+  double containerSize;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
     var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
 
     /// MediaQuery.of(context).size returns 0 at startup in release mode,
     /// we therefore need to handle this case.
@@ -45,24 +46,33 @@ class _ChallengeCarouselState extends State<ChallengeCarousel> {
       screenWidth = 400;
     }
 
+    if (screenHeight == 0) {
+      screenHeight = 640;
+    }
+
+    containerSize = min(screenHeight*0.4, 270.0);
+
     controller = PageController(
       initialPage: currentPage,
       keepPage: false,
-      viewportFraction: (widget.containerSize)/screenWidth,
+      viewportFraction: containerSize/screenWidth,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      onPageChanged: (value) {
-        setState(() {
-          currentPage = value;
-          widget.onSelectType(selectedChallenge);
-        });
-      },
-      controller: controller,
-      itemBuilder: buildItem,
+    return Container(
+      height: containerSize,
+      child: PageView.builder(
+        onPageChanged: (value) {
+          setState(() {
+            currentPage = value;
+            widget.onSelectType(selectedChallenge);
+          });
+        },
+        controller: controller,
+        itemBuilder: buildItem,
+      ),
     );
   }
 
