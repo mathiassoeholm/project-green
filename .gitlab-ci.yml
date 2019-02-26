@@ -70,7 +70,7 @@ android-deploy-appcenter:
   script:
     - bundle exec fastlane upload_appcenter_android
   variables:
-    APP_FILE: ./android/app/build/outputs/apk/release/app-release.apk
+    APP_FILE: ./build/outputs/apk/release/app-release.apk
 
 ios-deploy-appcenter:
   <<: *except-release
