@@ -4,7 +4,7 @@ stages:
 
 variables:
   BUILD_NAME: ProjectGreen
-  BUNDLE_IDENTIFIER: mindfox.mathias.projectgreen
+  BUNDLE_IDENTIFIER: com.mindfoxstudios.projectgreen
   ANDROID_PROJECT_DIR: ./android
   XCODE_OUTPUT_PATH: ./ios/builds/output
   APPCENTER_IOS_APP_SLUG: Project-Green-iOS
