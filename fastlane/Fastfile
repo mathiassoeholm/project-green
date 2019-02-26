@@ -72,29 +72,27 @@ lane :assemble_release_android do
     sh("flutter build apk --release")
   end
 
-  =begin
-  android_project_dir = ENV["ANDROID_PROJECT_DIR"]
-  android_keystore_location = ENV["ANDROID_KEYSTORE_LOCATION"]
-  android_keystore_password = ENV["ANDROID_KEYSTORE_PASSWORD"]
-  android_keystore_alias = ENV["ANDROID_KEYSTORE_ALIAS"]
-  android_keystore_alias_password = ENV["ANDROID_KEYSTORE_ALIAS_PASSWORD"]
+  #android_project_dir = ENV["ANDROID_PROJECT_DIR"]
+  #android_keystore_location = ENV["ANDROID_KEYSTORE_LOCATION"]
+  #android_keystore_password = ENV["ANDROID_KEYSTORE_PASSWORD"]
+  #android_keystore_alias = ENV["ANDROID_KEYSTORE_ALIAS"]
+  #android_keystore_alias_password = ENV["ANDROID_KEYSTORE_ALIAS_PASSWORD"]
   
   # We are in Fastlane directory, so go out a single one
-  full_keystore_path = "#{Pathname(Dir.pwd).parent.to_s}/#{android_keystore_location}"
+  #full_keystore_path = "#{Pathname(Dir.pwd).parent.to_s}/#{android_keystore_location}"
 
-  gradle(
-    project_dir: android_project_dir,
-    task: "assemble",
-    build_type: "Release",
-    gradle_path: "../android/gradle/wrapper",
-    properties: {
-      "android.injected.signing.store.file" => full_keystore_path,
-      "android.injected.signing.store.password" => android_keystore_password,
-      "android.injected.signing.key.alias" => android_keystore_alias,
-      "android.injected.signing.key.password" => android_keystore_alias_password,
-    }
-  )
-  =end
+  #gradle(
+  #  project_dir: android_project_dir,
+  #  task: "assemble",
+  #  build_type: "Release",
+  #  gradle_path: "../android/gradle/wrapper",
+ #   properties: {
+ #     "android.injected.signing.store.file" => full_keystore_path,
+ #     "android.injected.signing.store.password" => android_keystore_password,
+  #    "android.injected.signing.key.alias" => android_keystore_alias,
+ #     "android.injected.signing.key.password" => android_keystore_alias_password,
+  #  }
+ # )
 end
 
 commit_sha_identifier = ENV["CI_COMMIT_SHA"].chars.first(6).join
