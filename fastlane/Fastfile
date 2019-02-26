@@ -50,10 +50,6 @@ def archive_ios(gym_export_type, match_export_type)
     force_for_new_devices: true,
   )
 
-  cocoapods(
-    podfile: "./ios/Podfile"
-  )
-
   settings_to_override = {
     :BUNDLE_IDENTIFIER => @bundle_identifier,
     :PROVISIONING_PROFILE_SPECIFIER => ENV["sigh_#{@bundle_identifier}_#{match_export_type}_profile-name"],
