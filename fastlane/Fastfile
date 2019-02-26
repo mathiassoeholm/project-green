@@ -78,7 +78,7 @@ lane :assemble_release_android do
   android_keystore_password = ENV["ANDROID_KEYSTORE_PASSWORD"]
   android_keystore_alias = ENV["ANDROID_KEYSTORE_ALIAS"]
   android_keystore_alias_password = ENV["ANDROID_KEYSTORE_ALIAS_PASSWORD"]
-
+  
   # We are in Fastlane directory, so go out a single one
   full_keystore_path = "#{Pathname(Dir.pwd).parent.to_s}/#{android_keystore_location}"
 
@@ -86,6 +86,7 @@ lane :assemble_release_android do
     project_dir: android_project_dir,
     task: "assemble",
     build_type: "Release",
+    gradle: "../android/gradle/wrapper"
     properties: {
       "android.injected.signing.store.file" => full_keystore_path,
       "android.injected.signing.store.password" => android_keystore_password,
