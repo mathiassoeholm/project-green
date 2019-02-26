@@ -10,7 +10,9 @@ import 'package:redux/redux.dart';
 class UserDisplayName extends StatelessWidget {
   final Stream<double> collapseFactorStream;
 
-  const UserDisplayName({
+  Widget text;
+
+  UserDisplayName({
     @required this.collapseFactorStream
   });
 
@@ -22,6 +24,14 @@ class UserDisplayName extends StatelessWidget {
         if (displayName == null) {
           return Container(width: 0, height: 0);
         }
+
+        text = Text(displayName,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+          ),
+        );
 
         return CollapsedBuilder(
           stream: collapseFactorStream,
@@ -42,13 +52,7 @@ class UserDisplayName extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding: EdgeInsets.only(top: lerpDouble(110, 130, bottomTextInterpolation)),
-                    child: Text(displayName,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
-                    ),
+                    child: text,
                   ),
                 ),
                 Align(
@@ -57,13 +61,7 @@ class UserDisplayName extends StatelessWidget {
                     padding: EdgeInsets.only(left: 60, top: lerpDouble(0, 10.0, topTextInterpolation)),
                     child: Opacity(
                       opacity: topTextInterpolation,
-                      child: Text(displayName,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                        ),
-                      ),
+                      child: text,
                     ),
                   ),
                 ),

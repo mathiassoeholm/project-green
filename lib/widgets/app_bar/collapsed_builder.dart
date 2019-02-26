@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-typedef CollapsedWidgetBuilder = Widget Function(BuildContext context, double collapseFactor);
+typedef CollapsedWidgetBuilder = Widget Function(
+  BuildContext context,
+  double collapseFactor,
+);
 
 class CollapsedBuilder extends StatelessWidget {
   final Stream<double> stream;

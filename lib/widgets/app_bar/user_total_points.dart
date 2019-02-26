@@ -6,13 +6,14 @@ import 'package:project_green/appstate/app_state.dart';
 import 'package:project_green/utility/number_utility.dart';
 import 'package:project_green/widgets/app_bar/collapsed_builder.dart';
 import 'package:project_green/widgets/points_display.dart';
-import 'package:project_green/widgets/theme_values.dart';
 import 'package:redux/redux.dart';
 
 class UserTotalPoints extends StatelessWidget {
   final Stream<double> collapseFactorStream;
 
-  const UserTotalPoints({
+  Widget _pointsDisplay;
+
+  UserTotalPoints({
     @required this.collapseFactorStream
   });
 
@@ -21,6 +22,11 @@ class UserTotalPoints extends StatelessWidget {
     return StoreConnector<AppState, int>(
       converter: (Store<AppState> store) => store.state.user?.totalPoints,
       builder: (context, totalPoints) {
+
+        _pointsDisplay = PointsDisplay(
+          totalPoints: totalPoints,
+        );
+
         return CollapsedBuilder(
           stream: collapseFactorStream,
           builder: (context, collapseFactor) {
@@ -42,9 +48,7 @@ class UserTotalPoints extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding: EdgeInsets.only(top: lerpDouble(155, 180, bottomInterpolation)),
-                    child: PointsDisplay(
-                      totalPoints: totalPoints,
-                    ),
+                    child: _pointsDisplay,
                   ),
                 ),
                 Transform(
@@ -55,9 +59,7 @@ class UserTotalPoints extends StatelessWidget {
                       padding: EdgeInsets.only(top: 15, right: 7),
                       child: Opacity(
                         opacity: topInterpolation,
-                        child: PointsDisplay(
-                          totalPoints: totalPoints,
-                        ),
+                        child: _pointsDisplay,
                       ),
                     ),
                   ),

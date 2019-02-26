@@ -11,7 +11,9 @@ import 'package:redux/redux.dart';
 class UserRank extends StatelessWidget {
   final Stream<double> collapseFactorStream;
 
-  const UserRank({
+  Widget text;
+
+  UserRank({
     @required this.collapseFactorStream
   });
 
@@ -29,6 +31,14 @@ class UserRank extends StatelessWidget {
         if (totalPoints == null) {
           return Container(width: 0, height: 0);
         }
+
+        text = Text(totalPoints,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+          ),
+        );
 
         return CollapsedBuilder(
           stream: collapseFactorStream,
@@ -49,13 +59,7 @@ class UserRank extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding: EdgeInsets.only(top: lerpDouble(130, 155, bottomTextInterpolation)),
-                    child: Text(totalPoints,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                      ),
-                    ),
+                    child: text,
                   ),
                 ),
                 Align(
@@ -64,13 +68,7 @@ class UserRank extends StatelessWidget {
                     padding: EdgeInsets.only(left: 60, top: lerpDouble(50, 30.0, topTextInterpolation)),
                     child: Opacity(
                       opacity: topTextInterpolation,
-                      child: Text(totalPoints,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                        ),
-                      ),
+                      child: text,
                     ),
                   ),
                 ),
