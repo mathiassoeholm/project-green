@@ -31,6 +31,13 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+def keyStorePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+if (keyStorePassword == null) {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    keyStorePassword = properties.getProperty('ANDROID_KEYSTORE_PASSWORD')
+}
+
 android {
     compileSdkVersion 27
 
@@ -54,9 +61,9 @@ android {
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
-            keyPassword "$System.env.ANDROID_KEYSTORE_PASSWORD"
+            keyPassword keyStorePassword
             storeFile file(keystoreProperties['storeFile'])
-            storePassword "$System.env.ANDROID_KEYSTORE_PASSWORD"
+            storePassword keyStorePassword
         }
     }
     
