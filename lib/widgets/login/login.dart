@@ -20,6 +20,7 @@ class Login extends StatelessWidget {
                     fontSize: 44,
                     fontWeight: FontWeight.w600,
                     height: 0.67,
+                    letterSpacing: -1,
                   ),
                 ),
               ],
