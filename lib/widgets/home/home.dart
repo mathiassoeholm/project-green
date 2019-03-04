@@ -28,7 +28,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
     createTransitionController = AnimationController(
       duration: const Duration(milliseconds: 500),
-      vsync: this
+      vsync: this,
     );
 
     createTransitionAnimation = CurvedAnimation(

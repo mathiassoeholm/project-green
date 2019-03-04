@@ -12,10 +12,10 @@ import 'package:project_green/user/user.dart';
 import 'package:project_green/widgets/home/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:project_green/widgets/login/login.dart';
 import 'package:redux/redux.dart';
 
 void main() {
-
   final random = Random();
 
   final initialState = AppState((b) => b
@@ -152,7 +152,7 @@ void main() {
       ],
       initialRoute: '/',
       routes: {
-        '/': (context) => Home(),
+        '/': (context) => Login(),
       },
     ),
   ));

@@ -49,6 +49,7 @@ flutter:
 
   assets:
     - assets/images/cover_image.png
+    - assets/images/login_background.jpg
     - assets/images/challenges/airplane_avatar.png
     - assets/images/challenges/airplane_cover.png
     - assets/images/challenges/cow_avatar.png
