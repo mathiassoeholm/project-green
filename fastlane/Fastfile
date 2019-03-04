@@ -42,15 +42,20 @@ end
 def archive_ios(gym_export_type, match_export_type)
   output_path = ENV["XCODE_OUTPUT_PATH"]
   build_name = ENV["BUILD_NAME"]
-
+  
   match(
     type: match_export_type,
     force_for_new_devices: true,
   )
+
+  # According to this: https://flutter.dev/docs/deployment/ios#create-a-build-archive
+  # We need to run this command before archiving
+  Dir.chdir("..") do
+    sh("flutter build ios --release")
+  end
   
   settings_to_override = {
     :BUNDLE_IDENTIFIER => @bundle_identifier,
-    :PROVISIONING_PROFILE_SPECIFIER => ENV["sigh_#{@bundle_identifier}_#{match_export_type}_profile-name"],
     :DEVELOPMENT_TEAM => ENV["sigh_#{@bundle_identifier}_#{match_export_type}_team-id"],
   }
 
