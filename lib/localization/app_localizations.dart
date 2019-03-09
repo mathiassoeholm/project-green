@@ -71,10 +71,13 @@ class AppLocalizations {
   }
 
 
-String get signUpButton {
+  String get signUpButton {
     return _text[locale.languageCode]['sign_up_button'];
   }
 
+  String get forgotPassword {
+    return _text[locale.languageCode]['forgot_password'];
+  }
 
   // Challenges
   String getLongChallengeTitle(ChallengeType challengeType) {

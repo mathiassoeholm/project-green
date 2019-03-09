@@ -17,6 +17,7 @@ Map<String, Map<String, String>> _text = {
     'facebook_login_button': 'LOG IN WITH FACEBOOK',
     'login_button': 'LOG IN',
     'sign_up_button': 'SIGN UP',
+    'forgot_password': 'Forgot Password?',
     // Challenges
     'beef_long': 'Avoid eating beef',
     'beef_medium': 'Avoid beef',
@@ -45,6 +46,7 @@ Map<String, Map<String, String>> _text = {
     'facebook_login_button': 'LOG IND MED FACEBOOK',
     'login_button': 'LOG IND',
     'sign_up_button': 'REGISTRER',
+    'forgot_password': 'Glemt Adgangskode?',
     // Challenges
     'beef_long': 'Undgå at spise oksekød',
     'beef_medium': 'Undgå oksekød',
