@@ -42,8 +42,8 @@ class ThemeValues {
   ];
 
   static const lightBackground = Color(0xFFF9F8FD);
-
   static const green = Color(0xFF0ECF5C);
+  static const facebookBlue = Color(0xFF3B5998);
 
 }
 

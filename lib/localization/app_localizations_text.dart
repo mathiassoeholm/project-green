@@ -14,6 +14,9 @@ Map<String, Map<String, String>> _text = {
     'thats_okay': 'That’s okay',
     'you_are_awesome': 'You’re still awesome!',
     'im_awesome': 'I’M AWESOME',
+    'facebook_login_button': 'LOG IN WITH FACEBOOK',
+    'login_button': 'LOG IN',
+    'sign_up_button': 'SIGN UP',
     // Challenges
     'beef_long': 'Avoid eating beef',
     'beef_medium': 'Avoid beef',
@@ -39,6 +42,9 @@ Map<String, Map<String, String>> _text = {
     'thats_okay': 'Det er okay',
     'you_are_awesome': 'Du er stadig nice!',
     'im_awesome': 'JEG ER NICE',
+    'facebook_login_button': 'LOG IND MED FACEBOOK',
+    'login_button': 'LOG IND',
+    'sign_up_button': 'REGISTRER',
     // Challenges
     'beef_long': 'Undgå at spise oksekød',
     'beef_medium': 'Undgå oksekød',

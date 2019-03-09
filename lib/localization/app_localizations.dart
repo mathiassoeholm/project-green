@@ -62,6 +62,20 @@ class AppLocalizations {
     return _text[locale.languageCode]['im_awesome'];
   }
 
+  String get facebookLoginButton {
+    return _text[locale.languageCode]['facebook_login_button'];
+  }
+
+  String get loginButton {
+    return _text[locale.languageCode]['login_button'];
+  }
+
+
+String get signUpButton {
+    return _text[locale.languageCode]['sign_up_button'];
+  }
+
+
   // Challenges
   String getLongChallengeTitle(ChallengeType challengeType) {
     return _text[locale.languageCode]['${enumName(challengeType)}_long'];

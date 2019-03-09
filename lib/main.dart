@@ -153,6 +153,7 @@ void main() {
       initialRoute: '/',
       routes: {
         '/': (context) => Login(),
+        '/home': (context) => Home(),
       },
     ),
   ));
