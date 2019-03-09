@@ -2,12 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:project_green/widgets/theme_values.dart';
 import 'package:project_green/widgets/widget_lib/conditional.dart';
 
-class LoginBackground extends StatelessWidget {
+class LoginBackground extends StatefulWidget {
   final Widget child;
 
   const LoginBackground({
     this.child,
   });
+
+  @override
+  _LoginBackgroundState createState() => _LoginBackgroundState();
+}
+
+class _LoginBackgroundState extends State<LoginBackground> with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+  Animation backgroundAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 30),
+    );
+
+    animationController.repeat(reverse: true);
+
+    backgroundAnimation = CurvedAnimation(parent: animationController, curve: Curves.linear);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +38,16 @@ class LoginBackground extends StatelessWidget {
         Container(
           color: ThemeValues.green,
         ),
-        Positioned(
-          left: -50, right: -400, top: -300, bottom: -10,
+        AnimatedBuilder(
+          animation: backgroundAnimation,
+          builder: (context, child) {
+            final offset = backgroundAnimation.value*300;
+
+            return Positioned(
+              left: -50, right: -400, top: -300+offset, bottom: -offset,
+              child: child,
+            );
+          },
           child: Opacity(
             opacity: 0.2,
             child: Container(
@@ -46,8 +76,8 @@ class LoginBackground extends StatelessWidget {
           ),
         ),
         Conditional(
-          predicate: () => child != null,
-          child: child,
+          predicate: () => widget.child != null,
+          child: widget.child,
         )
       ]
     );
