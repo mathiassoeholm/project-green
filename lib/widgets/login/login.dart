@@ -2,73 +2,122 @@ import 'package:flutter/material.dart';
 import 'package:project_green/widgets/login/email_login.dart';
 import 'package:project_green/widgets/login/login_background.dart';
 import 'package:project_green/widgets/login/login_overview.dart';
+import 'package:project_green/widgets/login/logo_header.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
+  AnimationController nextPageController;
+  Animation slideAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    nextPageController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 600),
+    );
+
+    slideAnimation = CurvedAnimation(
+      parent: nextPageController,
+      curve: Curves.fastLinearToSlowEaseIn,
+      reverseCurve: Curves.fastLinearToSlowEaseIn.flipped,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return LoginBackground(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SafeArea(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return SingleChildScrollView(
-                physics: ClampingScrollPhysics(),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: constraints.maxHeight,
+    return WillPopScope(
+      onWillPop: () async {
+        if (nextPageController.value > 0) {
+          nextPageController.reverse();
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: LoginBackground(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SafeArea(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  physics: ClampingScrollPhysics(),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        LogoHeader(),
+                        _buildBottomStack(context, constraints),
+                      ],
+                    ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Icon(Icons.filter_vintage,
-                              size: 70,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text('Project\nGreen',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 44,
-                              fontWeight: FontWeight.w600,
-                              height: 0.67,
-                              letterSpacing: -1,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Stack(
-                        children: <Widget>[
-                          Transform(
-                            transform: Matrix4.translationValues(-constraints.maxWidth, 0, 0),
-                            child: Center(
-                              child: LoginOverview()
-                            ),
-                          ),
-                          Transform(
-                            transform: Matrix4.translationValues(0, 0, 0),
-                            child: Center(
-                              child: LoginOverview()
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          )
+                );
+              },
+            )
+          ),
         ),
       ),
     );
+  }
+
+  Widget _buildBottomStack(BuildContext context, BoxConstraints viewportConstraints) {
+    return Stack(
+      children: <Widget>[
+        AnimatedBuilder(
+          animation: nextPageController,
+          builder: (context, child) {
+            return Transform(
+              transform: Matrix4.translationValues(
+                -viewportConstraints.maxWidth*slideAnimation.value,
+                0,
+                0,
+              ),
+              child: child,
+            );
+          },
+          child: Center(
+            child: LoginOverview(
+              onTapLogin: () {
+                nextPageController.forward();
+              },
+            )
+          ),
+        ),
+        AnimatedBuilder(
+          animation: nextPageController,
+          builder: (context, child) {
+            return Transform(
+              transform: Matrix4.translationValues(
+                viewportConstraints.maxWidth*(1.0-slideAnimation.value),
+                0,
+                0
+              ),
+              child: child,
+            );
+          },
+          child: Center(
+            child: EmailLogin(),
+          ),
+        ),
+      ],
+    );
+
+  }
+
+  @override
+  void dispose() {
+    nextPageController.dispose();
+    super.dispose();
   }
 }

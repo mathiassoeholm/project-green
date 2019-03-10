@@ -5,6 +5,12 @@ import 'package:project_green/widgets/login/wide_button.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
 class LoginOverview extends StatelessWidget {
+  final VoidCallback onTapLogin;
+
+  const LoginOverview({
+    this.onTapLogin,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,6 +37,7 @@ class LoginOverview extends StatelessWidget {
             textColor: Colors.white,
             backgroundColor: Colors.transparent,
             borderColor: Colors.white,
+            onTap: onTapLogin,
           ),
         ),
         Padding(
