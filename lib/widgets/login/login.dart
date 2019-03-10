@@ -10,42 +10,42 @@ class Login extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Icon(Icons.filter_vintage,
-                        size: 70,
-                        color: Colors.white,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                physics: ClampingScrollPhysics(),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Icon(Icons.filter_vintage,
+                              size: 70,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text('Project\nGreen',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 44,
+                              fontWeight: FontWeight.w600,
+                              height: 0.67,
+                              letterSpacing: -1,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Text('Project\nGreen',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 44,
-                        fontWeight: FontWeight.w600,
-                        height: 0.67,
-                        letterSpacing: -1,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                // SingleChildScrollView avoids overflow when keyboard moves up
-                child: SingleChildScrollView(
-                physics: NeverScrollableScrollPhysics(),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      return Stack(
+                      Stack(
                         children: <Widget>[
                           Transform(
                             transform: Matrix4.translationValues(-constraints.maxWidth, 0, 0),
@@ -60,12 +60,12 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ],
-                      );
-                    },
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
+              );
+            },
           )
         ),
       ),

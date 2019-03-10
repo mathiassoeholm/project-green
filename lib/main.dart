@@ -13,6 +13,7 @@ import 'package:project_green/widgets/home/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:project_green/widgets/login/login.dart';
+import 'package:project_green/widgets/widget_lib/NoGlowScrollBehaviour.dart';
 import 'package:redux/redux.dart';
 
 void main() {
@@ -154,6 +155,12 @@ void main() {
       routes: {
         '/': (context) => Login(),
         '/home': (context) => Home(),
+      },
+      builder: (context, child) {
+        return ScrollConfiguration(
+          behavior: NoGlowScrollBehaviour(),
+          child: child,
+        );
       },
     ),
   ));

@@ -10,7 +10,7 @@ class LoginOverview extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.fromLTRB(8.0, 24, 8.0, 8.0),
           child: WideButton(
             text: AppLocalizations.of(context).facebookLoginButton,
             textColor: Colors.white,

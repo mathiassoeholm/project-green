@@ -16,13 +16,27 @@ class _EmailLoginState extends State<EmailLogin> {
     return Form(
       key: _formKey,
       child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          TextFormField(
+          Container(
+            width: 290,
+            child: TextFormField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.mail_outline)
+              ),
+            ),
           ),
-          TextFormField(
+          Container(
+            width: 290,
+            child: TextFormField(
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock_outline)
+                ),
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(32.0),
             child: WideButton(
               text: AppLocalizations.of(context).loginButton,
               textColor: ThemeValues.green,
@@ -30,13 +44,10 @@ class _EmailLoginState extends State<EmailLogin> {
               onTap: () { },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(AppLocalizations.of(context).forgotPassword,
-              style: Theme.of(context).textTheme.subtitle.merge(TextStyle(
-                color: Colors.white
-              )),
-            ),
+          Text(AppLocalizations.of(context).forgotPassword,
+            style: Theme.of(context).textTheme.subtitle.merge(TextStyle(
+              color: Colors.white
+            )),
           )
         ],
       ),
