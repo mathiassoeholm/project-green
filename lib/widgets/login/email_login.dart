@@ -25,6 +25,7 @@ class _EmailLoginState extends State<EmailLogin> {
           ),
           InputField(
             icon: Icons.lock_outline,
+            obscureText: true,
           ),
           Padding(
             padding: const EdgeInsets.all(32.0),

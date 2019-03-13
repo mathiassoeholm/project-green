@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
   final IconData icon;
+  final bool obscureText;
 
   const InputField({
     this.icon,
+    this.obscureText,
   });
 
   @override
@@ -12,6 +14,7 @@ class InputField extends StatelessWidget {
     return Container(
       width: 290,
       child: TextFormField(
+        obscureText: obscureText ?? false,
         style: TextStyle(
           color: Colors.white,
         ),
