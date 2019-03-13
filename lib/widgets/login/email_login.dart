@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_green/localization/app_localizations.dart';
+import 'package:project_green/widgets/login/input_field.dart';
 import 'package:project_green/widgets/login/wide_button.dart';
 import 'package:project_green/widgets/theme_values.dart';
 
@@ -19,21 +20,11 @@ class _EmailLoginState extends State<EmailLogin> {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Container(
-            width: 290,
-            child: TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.mail_outline)
-              ),
-            ),
+          InputField(
+            icon: Icons.mail_outline,
           ),
-          Container(
-            width: 290,
-            child: TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock_outline)
-                ),
-            ),
+          InputField(
+            icon: Icons.lock_outline,
           ),
           Padding(
             padding: const EdgeInsets.all(32.0),

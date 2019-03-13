@@ -52,13 +52,42 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     constraints: BoxConstraints(
                       minHeight: constraints.maxHeight,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        LogoHeader(),
-                        _buildBottomStack(context, constraints),
+                    child: Stack(
+                      fit: StackFit.passthrough,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(4.0, 13, 0, 0),
+                            child: AnimatedBuilder(
+                              animation: slideAnimation,
+                              builder: (context, child) {
+                                return Opacity(
+                                  opacity: slideAnimation.value,
+                                  child: child,
+                                );
+                              },
+                              child: IconButton(
+                              iconSize: 34,
+                                icon: Icon(Icons.arrow_back_ios,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  nextPageController.reverse();
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            LogoHeader(),
+                            _buildBottomStack(context, constraints),
+                          ],
+                        ),
                       ],
                     ),
                   ),
